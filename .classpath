@@ -4,5 +4,11 @@
 	<classpathentry kind="src" path="srctest"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/apache.commons"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/knowm"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ru"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/smile"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/tablesaw"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/weka"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
