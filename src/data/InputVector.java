@@ -16,6 +16,10 @@ public class InputVector {
 		this.inputVector = new double[dimension];
 	}
 
+	public InputVector(double[] inputVector) {
+		this.inputVector = Arrays.copyOf(inputVector, inputVector.length);
+	}
+
 	// ************************************************************
 	// Methods
 

@@ -1,5 +1,6 @@
 package data;
 
+
 @SuppressWarnings("rawtypes")
 public class Pattern {
 	// ************************************************************
