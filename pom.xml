@@ -16,6 +16,20 @@
     </resources>
     <plugins>
       <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>main.Main</mainClass>
+              <addClasspath>true</addClasspath>
+              <addExtensions>true</addExtensions>
+              <packageName>main</packageName>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
         <configuration>
@@ -70,6 +84,29 @@
   		<groupId>com.github.mbuzdalov</groupId>
   		<artifactId>non-dominated-sorting-implementations</artifactId>
   		<version>0.2.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.uma.jmetal</groupId>
+  		<artifactId>jmetal-core</artifactId>
+  		<version>5.10</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.junit.jupiter</groupId>
+  		<artifactId>junit-jupiter-api</artifactId>
+  		<version>5.3.2</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.junit.jupiter</groupId>
+  		<artifactId>junit-jupiter-engine</artifactId>
+  		<version>5.3.2</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.13</version>
+  		<scope>test</scope>
   	</dependency>
   </dependencies>
 </project>
