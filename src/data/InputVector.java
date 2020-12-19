@@ -44,4 +44,16 @@ public class InputVector {
 		this.inputVector = Arrays.copyOf(inputVector, inputVector.length);
 	}
 
+	@Override
+	public String toString() {
+		if(this.inputVector == null) {
+			return null;
+		}
+		String str = String.valueOf(this.inputVector[0]);
+		for(int i = 1; i < this.inputVector.length; i++) {
+			str += ", " + this.inputVector[i];
+		}
+		return str;
+	}
+
 }

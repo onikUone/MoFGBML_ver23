@@ -31,5 +31,10 @@ public class ClassLabel extends Classes<Integer> {
 		this.classLabel = classLabel;
 	}
 
+	@Override
+	public String toString() {
+		return String.valueOf(this.classLabel);
+	}
+
 
 }

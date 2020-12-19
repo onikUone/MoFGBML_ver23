@@ -35,5 +35,17 @@ public class ClassVector extends Classes<Integer[]> {
 		this.classLabel = Arrays.copyOf(classLabel, classLabel.length);
 	}
 
+	@Override
+	public String toString() {
+		if(this.classLabel == null) {
+			return null;
+		}
+		String str = String.valueOf(this.classLabel[0]);
+		for(int i = 1; i < this.classLabel.length; i++) {
+			str += ", " + this.classLabel[i];
+		}
+		return str;
+	}
+
 
 }

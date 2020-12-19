@@ -46,6 +46,23 @@ public class DataSet {
 		return this.patterns;
 	}
 
+	@Override
+	public String toString() {
+		if(this.patterns.size() == 0) {
+			return null;
+		}
+		String ln = System.lineSeparator();
+		String str = "";
+		// Header
+		str += this.DataSize + "," + this.Ndim + "," + this.Cnum + ln;
+		// Patterns
+		for(int n = 0; n < this.patterns.size(); n++) {
+			Pattern pattern = this.patterns.get(n);
+			str += pattern.toString() + ln;
+		}
+		return str;
+	}
+
 	public void setNdim(int Ndim) {
 		this.Ndim = Ndim;
 	}

@@ -60,4 +60,16 @@ public class Pattern {
 		return this.trueClass;
 	}
 
+	@Override
+	public String toString() {
+		if(this.inputVector == null || this.trueClass == null) {
+			return null;
+		}
+
+		String str = "id:" + String.valueOf(this.id);
+		str += "," + "input:[" + this.inputVector.toString() + "]";
+		str += "," + "class:[" + this.trueClass.toString() + "]";
+		return str;
+	}
+
 }
