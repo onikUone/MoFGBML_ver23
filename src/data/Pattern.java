@@ -19,11 +19,11 @@ public class Pattern {
 	/**
 	 * Class label
 	 */
-	Classes trueClass;
+	ClassLabel trueClass;
 
 	// ************************************************************
 	// Constructor
-	public Pattern(int id, InputVector inputVector, Classes trueClass) {
+	public Pattern(int id, InputVector inputVector, ClassLabel trueClass) {
 		this.id = id;
 		this.inputVector = inputVector;
 		this.trueClass = trueClass;
@@ -56,7 +56,7 @@ public class Pattern {
 	/**
 	 *
 	 */
-	public Classes getTrueClass() {
+	public ClassLabel getTrueClass() {
 		return this.trueClass;
 	}
 

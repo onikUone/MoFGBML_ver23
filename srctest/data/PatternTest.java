@@ -15,8 +15,7 @@ public class PatternTest {
 		Integer[] cVec = new Integer[] {1, 0, 1};
 
 		InputVector inputVector = new InputVector(vector);
-		ClassLabel classLabel = new ClassLabel(C);
-		ClassVector classVector = new ClassVector(cVec);
+		ClassLabel classLabel = new ClassLabel();
 
 		Pattern pattern = new Pattern(id, inputVector, classLabel);
 		for(int i = 0; i < dimension; i++) {
@@ -31,26 +30,26 @@ public class PatternTest {
 		int id = 0;
 		double[] vector = new double[] {0, 1};
 		int dimension = vector.length;
-
-		Integer C = 7;
-		Integer[] cVec = new Integer[] {1, 0, 1};
-
 		InputVector inputVector = new InputVector(vector);
-		ClassLabel classLabel = new ClassLabel(C);
-		ClassVector classVector = new ClassVector(cVec);
 
 		Pattern pattern;
 
 		//Single Label
+		Integer C = 7;
+		ClassLabel classLabel = new ClassLabel();
+		classLabel.addClassLabel(C);
 		pattern = new Pattern(id, inputVector, classLabel);
 		Integer actualC = C;
-		Integer expectedC = (Integer)pattern.getTrueClass().getClassLabel();
+		Integer expectedC = pattern.getTrueClass().getClassLabel();
 		assertEquals(expectedC, actualC);
 
 		//Multi Label
-		pattern = new Pattern(id, inputVector, classVector);
+		Integer[] cVec = new Integer[] {1, 0, 1};
+		classLabel = new ClassLabel();
+		classLabel.addClassLabels(cVec);
+		pattern = new Pattern(id, inputVector, classLabel);
 		Integer[] actualVector = cVec;
-		Integer[] expectedVector = (Integer[])pattern.getTrueClass().getClassLabel();
+		Integer[] expectedVector = pattern.getTrueClass().getClassVector();
 		assertArrayEquals(expectedVector, actualVector);
 
 	}

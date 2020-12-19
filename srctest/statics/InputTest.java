@@ -7,7 +7,6 @@ import java.io.File;
 import org.junit.Test;
 
 import data.ClassLabel;
-import data.ClassVector;
 import data.DataSet;
 import data.InputVector;
 import data.Pattern;
@@ -52,7 +51,8 @@ public class InputTest {
 										0.0416666666666667};
 		InputVector inputVector = new InputVector(vector);
 		Integer C = 0;
-		ClassLabel classLabel = new ClassLabel(C);
+		ClassLabel classLabel = new ClassLabel();
+		classLabel.addClassLabel(C);
 		Pattern actualPattern = new Pattern(id, inputVector, classLabel);
 
 		DataSet dataset = new DataSet();
@@ -84,8 +84,9 @@ public class InputTest {
 										-1.0, -2.0, -1.0, -1.0};
 		InputVector inputVector = new InputVector(vector);
 		Integer[] cVec = new Integer[] {1, 0, 0, 1, 0, 1, 0};
-		ClassVector classVector = new ClassVector(cVec);
-		Pattern actualPattern = new Pattern(id, inputVector, classVector);
+		ClassLabel classLabel = new ClassLabel();
+		classLabel.addClassLabels(cVec);
+		Pattern actualPattern = new Pattern(id, inputVector, classLabel);
 
 		DataSet dataset = new DataSet();
 		Input.inputMultiLabelDataSet(dataset, fileName);
@@ -99,8 +100,8 @@ public class InputTest {
 		}
 		// class label
 		for(int i = 0; i < cVec.length; i++) {
-			Integer actual = ((Integer[])actualPattern.getTrueClass().getClassLabel())[i];
-			Integer expected = ((Integer[])expectedPattern.getTrueClass().getClassLabel())[i];
+			Integer actual = actualPattern.getTrueClass().getClassVector()[i];
+			Integer expected = expectedPattern.getTrueClass().getClassVector()[i];
 			assertEquals(expected, actual);
 		}
 	}

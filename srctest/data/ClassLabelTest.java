@@ -7,12 +7,29 @@ import org.junit.Test;
 public class ClassLabelTest {
 
 	@Test
-	public void testGetClassLabel() {
-		Integer actual = 7;
+	public void testSingleLabel() {
+		Integer C = 7;
+		String actual = "7";
 
-		ClassLabel classLabel = new ClassLabel(actual);
+		ClassLabel classLabel = new ClassLabel();
+		classLabel.addClassLabel(C);
 
-		Integer expected = classLabel.getClassLabel();
+		String expected = classLabel.toString();
+
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testMultiLabel() {
+		Integer[] cVec = new Integer[] {1, 0, 1};
+		String actual = "1, 0, 1";
+
+		ClassLabel classLabel = new ClassLabel();
+		for(int i = 0; i < cVec.length; i++) {
+			classLabel.addClassLabel(cVec[i]);
+		}
+
+		String expected = classLabel.toString();
 
 		assertEquals(expected, actual);
 	}

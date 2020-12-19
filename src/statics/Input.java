@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import data.ClassLabel;
-import data.ClassVector;
 import data.DataSet;
 import data.InputVector;
 import data.Pattern;
@@ -44,7 +43,8 @@ public class Input {
 			C = (int)line[data.getNdim()];
 
 			InputVector inputVector = new InputVector(vector);
-			ClassLabel classLabel = new ClassLabel(C);
+			ClassLabel classLabel = new ClassLabel();
+			classLabel.addClassLabel(C);
 			Pattern pattern = new Pattern(id, inputVector, classLabel);
 
 			data.addPattern(pattern);
@@ -81,8 +81,9 @@ public class Input {
 			}
 
 			InputVector inputVector = new InputVector(vector);
-			ClassVector classVector = new ClassVector(cVec);
-			Pattern pattern = new Pattern(id, inputVector, classVector);
+			ClassLabel classLabel = new ClassLabel();
+			classLabel.addClassLabels(cVec);
+			Pattern pattern = new Pattern(id, inputVector, classLabel);
 
 			data.addPattern(pattern);
 		}
