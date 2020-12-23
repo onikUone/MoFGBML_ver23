@@ -11,6 +11,13 @@ import java.util.ResourceBundle;
  * 各種定数 定義クラス
  * Consts.[変数名]でアクセス可能
  *
+ * 本ソース(Consts.java)の以下で指定している値はデフォルト値
+ * もし、jarエクスポート後に変更したい値が出てきた場合は、
+ * consts.propertiesに変更したい変数を書けば良い
+ *     例: 「WINDOWS = 1」(in consts.properties)
+ * .propertiesファイルは、Consts.setConsts(String source)メソッドによって読み込まれる
+ *     例: Consts.setConsts("consts");  // load consts.properties
+ *
  */
 public class Consts {
 

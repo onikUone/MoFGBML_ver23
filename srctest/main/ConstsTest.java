@@ -8,8 +8,14 @@ public class ConstsTest {
 
 	@Test
 	public void testSetConsts() {
+		int UNIX = Consts.UNIX;
+
 		String source = "testConsts";
 		Consts.setConsts(source);
+
+		// Not change (not writen in .properties file)
+		int nowUNIX = Consts.UNIX;
+		assertEquals(nowUNIX, UNIX);
 
 		// Integer
 		assertEquals(Consts.ANTECEDENT_LEN, -1);
