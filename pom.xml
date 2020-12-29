@@ -111,5 +111,10 @@
   		<artifactId>weka-dev</artifactId>
   		<version>3.9.5</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.uma.jmetal</groupId>
+  		<artifactId>jmetal-problem</artifactId>
+  		<version>5.10</version>
+  	</dependency>
   </dependencies>
 </project>
