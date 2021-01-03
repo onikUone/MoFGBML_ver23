@@ -10,6 +10,7 @@ import data.ClassLabel;
 import data.DataSet;
 import data.InputVector;
 import data.Pattern;
+import utility.Input;
 
 public class InputTest {
 

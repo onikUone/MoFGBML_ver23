@@ -1,4 +1,4 @@
-package statics;
+package utility;
 
 import java.io.BufferedWriter;
 import java.io.File;

@@ -1,4 +1,4 @@
-package fuzzy.params;
+package fuzzy.membershipParams;
 
 public class HomoTriangle_3_4_5 {
 

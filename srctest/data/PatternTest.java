@@ -17,7 +17,12 @@ public class PatternTest {
 		InputVector inputVector = new InputVector(vector);
 		ClassLabel classLabel = new ClassLabel();
 
-		Pattern pattern = new Pattern(id, inputVector, classLabel);
+		Pattern pattern = Pattern.builder()
+								.id(id)
+								.inputVector(inputVector)
+								.trueClass(classLabel)
+								.build();
+
 		for(int i = 0; i < dimension; i++) {
 			Double actual = vector[i];
 			Double expected = pattern.getDimValue(i);
@@ -38,7 +43,11 @@ public class PatternTest {
 		Integer C = 7;
 		ClassLabel classLabel = new ClassLabel();
 		classLabel.addClassLabel(C);
-		pattern = new Pattern(id, inputVector, classLabel);
+		pattern = Pattern.builder()
+						.id(id)
+						.inputVector(inputVector)
+						.trueClass(classLabel)
+						.build();
 		Integer actualC = C;
 		Integer expectedC = pattern.getTrueClass().getClassLabel();
 		assertEquals(expectedC, actualC);
@@ -47,7 +56,11 @@ public class PatternTest {
 		Integer[] cVec = new Integer[] {1, 0, 1};
 		classLabel = new ClassLabel();
 		classLabel.addClassLabels(cVec);
-		pattern = new Pattern(id, inputVector, classLabel);
+		pattern = Pattern.builder()
+						.id(id)
+						.inputVector(inputVector)
+						.trueClass(classLabel)
+						.build();
 		Integer[] actualVector = cVec;
 		Integer[] expectedVector = pattern.getTrueClass().getClassVector();
 		assertArrayEquals(expectedVector, actualVector);

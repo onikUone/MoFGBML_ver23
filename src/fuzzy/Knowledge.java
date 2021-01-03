@@ -1,41 +1,54 @@
 package fuzzy;
 
-import java.util.ArrayList;
+import jfml.term.FuzzyTermType;
 
 public class Knowledge {
 	// ************************************************************
 	// Fields
 
-	/**  */
-	float[][] ranges;
-
-	/**  */
-	String[] inputVariableNames;
-
-	/**  */
-	String[] classLabels;
-
-	/**  */
-	ArrayList<String> outputVariableNames = new ArrayList<>();
+	/** */
+	FuzzyTermType[][] fuzzySets;
 
 	// ************************************************************
 	// Constructor
 	public Knowledge() {}
-
-	public Knowledge(int dimension, int Cnum, int fuzzifyH) {
-		this.ranges = new float[dimension][];
-		for(int i = 0; i < dimension; i++) {
-			this.ranges[i] = new float[2];	//{domainLeft, domainRight}
-		}
-		this.inputVariableNames = new String[dimension];
-		this.classLabels = new String[Cnum];
-	}
 
 	// ************************************************************
 	// Methods
 
 	/**
 	 *
+	 * @param x
+	 * @param dimension
+	 * @param H
+	 * @return
 	 */
+	public double getMembershipValue(double x, int dimension, int H) {
+		return (double)fuzzySets[dimension][H].getMembershipValue((float)x);
+	}
 
+	public FuzzyTermType getFuzzySet(int dimension, int H) {
+		return this.fuzzySets[dimension][H];
+	}
+
+	/**
+	 * Shallow copy
+	 */
+	public void setFuzzySets(FuzzyTermType[][] fuzzySets) {
+		this.fuzzySets = fuzzySets;
+	}
+
+	@Override
+	public String toString() {
+		String ln = System.lineSeparator();
+		String str = "";
+
+		for(int i = 0; i < fuzzySets.length; i++) {
+			for(int j = 0; j < fuzzySets[i].length; j++) {
+				str += fuzzySets[i][j].toString() + ln;
+			}
+		}
+
+		return str;
+	}
 }

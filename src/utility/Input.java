@@ -1,4 +1,4 @@
-package statics;
+package utility;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,8 +45,12 @@ public class Input {
 			InputVector inputVector = new InputVector(vector);
 			ClassLabel classLabel = new ClassLabel();
 			classLabel.addClassLabel(C);
-			Pattern pattern = new Pattern(id, inputVector, classLabel);
 
+			Pattern pattern = Pattern.builder()
+								.id(id)
+								.inputVector(inputVector)
+								.trueClass(classLabel)
+								.build();
 			data.addPattern(pattern);
 		}
 		return data;
@@ -83,8 +87,12 @@ public class Input {
 			InputVector inputVector = new InputVector(vector);
 			ClassLabel classLabel = new ClassLabel();
 			classLabel.addClassLabels(cVec);
-			Pattern pattern = new Pattern(id, inputVector, classLabel);
 
+			Pattern pattern = Pattern.builder()
+								.id(id)
+								.inputVector(inputVector)
+								.trueClass(classLabel)
+								.build();
 			data.addPattern(pattern);
 		}
 		return data;
@@ -127,7 +135,7 @@ public class Input {
 		return fileName;
 	}
 
-	public static List<String> inputDataAsListString(String fileName) {
+	protected static List<String> inputDataAsListString(String fileName) {
 		List<String> lines = new ArrayList<>();
 		try ( Stream<String> line = Files.lines(Paths.get(fileName)) ) {
 		    lines = line.collect( Collectors.toList() );
@@ -142,7 +150,7 @@ public class Input {
 	 * @param fileName
 	 * @return : List{@literal <double[]>}
 	 */
-	public static List<double[]> inputDataAsList(String fileName) {
+	protected static List<double[]> inputDataAsList(String fileName) {
 		List<double[]> lines = new ArrayList<double[]>();
 		try ( Stream<String> line = Files.lines(Paths.get(fileName)) ) {
 		    lines =
