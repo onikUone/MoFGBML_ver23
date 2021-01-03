@@ -10,7 +10,7 @@ import cilabo.fuzzy.rule.consequent.ConsequentFactory;
 import cilabo.fuzzy.rule.consequent.RuleWeight;
 import cilabo.utility.Parallel;
 
-public class MultiLabel_ConsequentFactory extends MoFGBML_ConsequentFactory implements ConsequentFactory {
+public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements ConsequentFactory {
 	// ************************************************************
 	// Fields
 

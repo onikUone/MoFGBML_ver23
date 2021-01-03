@@ -32,6 +32,20 @@ public class Knowledge {
 	}
 
 	/**
+	 *
+	 */
+	public int getDimension() {
+		return this.fuzzySets.length;
+	}
+
+	/**
+	 *
+	 */
+	public int getFuzzySetNum(int dimension) {
+		return this.fuzzySets[dimension].length;
+	}
+
+	/**
 	 * Shallow copy
 	 */
 	public void setFuzzySets(FuzzyTermType[][] fuzzySets) {

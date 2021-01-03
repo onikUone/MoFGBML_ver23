@@ -26,6 +26,8 @@ public class Consts {
 	public static int UNIX = 1;		//Unix or Mac
 
 	//Fuzzy Clasifier ************************************
+	/** don't care適応確率を定数にするかどうか */
+	public static boolean IS_PROBABILITY_DONT_CARE = false;
 	/** don't careにしない条件部の数 */
 	public static int ANTECEDENT_LEN = 5;
 	/** don't care適応確率 */
@@ -85,6 +87,7 @@ public class Consts {
 
 		if(bundle.containsKey("WINDOWS")) { WINDOWS = Integer.parseInt(bundle.getString("WINDOWS")); }
 		if(bundle.containsKey("UNIX")) { UNIX = Integer.parseInt(bundle.getString("UNIX")); }
+		if(bundle.containsKey("IS_PROBABILITY_DONT_CARE")) { IS_PROBABILITY_DONT_CARE = Boolean.parseBoolean(bundle.getString("IS_PROBABILITY_DONT_CARE")); }
 		if(bundle.containsKey("ANTECEDENT_LEN")) { ANTECEDENT_LEN = Integer.parseInt(bundle.getString("ANTECEDENT_LEN")); }
 		if(bundle.containsKey("DONT_CARE_RT")) { DONT_CARE_RT = Double.parseDouble(bundle.getString("DONT_CARE_RT")); }
 		if(bundle.containsKey("INITIATION_RULE_NUM")) { INITIATION_RULE_NUM = Integer.parseInt(bundle.getString("INITIATION_RULE_NUM")); }
@@ -117,6 +120,7 @@ public class Consts {
 
 		sb.append("WINDOWS" + " = " + String.valueOf(WINDOWS));
 		sb.append("UNIX" + " = " + String.valueOf(UNIX));
+		sb.append("IS_PROBABILITY_DONT_CARE" + " = " + String.valueOf(IS_PROBABILITY_DONT_CARE));
 		sb.append("ANTECEDENT_LEN" + " = " + String.valueOf(ANTECEDENT_LEN));
 		sb.append("DONT_CARE_RT" + " = " + String.valueOf(DONT_CARE_RT));
 		sb.append("INITIATION_RULE_NUM" + " = " + String.valueOf(INITIATION_RULE_NUM));
