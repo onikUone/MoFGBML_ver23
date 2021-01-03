@@ -1,7 +1,7 @@
-package fuzzy.factory.example;
+package fuzzy.knowledge.example;
 
-import fuzzy.Knowledge;
-import fuzzy.factory.KnowledgeFactory;
+import fuzzy.knowledge.Knowledge;
+import fuzzy.knowledge.KnowledgeFactory;
 import jfml.term.FuzzyTermType;
 
 public class HomoTriangleKnowledgeFactory extends KnowledgeFactory {

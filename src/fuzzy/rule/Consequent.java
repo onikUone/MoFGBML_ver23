@@ -1,4 +1,4 @@
-package fuzzy;
+package fuzzy.rule;
 
 import data.ClassLabel;
 

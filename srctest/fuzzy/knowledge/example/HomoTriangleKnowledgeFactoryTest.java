@@ -1,10 +1,11 @@
-package fuzzy.factory.example;
+package fuzzy.knowledge.example;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import fuzzy.Knowledge;
+import fuzzy.knowledge.Knowledge;
+import fuzzy.knowledge.example.HomoTriangleKnowledgeFactory;
 import fuzzy.membershipParams.HomoTriangle_3_4_5;
 import jfml.term.FuzzyTermType;
 

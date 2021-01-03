@@ -1,12 +1,17 @@
-package fuzzy;
+package fuzzy.rule;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import data.ClassLabel;
-import fuzzy.factory.example.HomoTriangleKnowledgeFactory;
+import fuzzy.knowledge.Knowledge;
+import fuzzy.knowledge.example.HomoTriangleKnowledgeFactory;
 import fuzzy.membershipParams.HomoTriangle_3_4_5;
+import fuzzy.rule.Antecedent;
+import fuzzy.rule.Consequent;
+import fuzzy.rule.FuzzyRule;
+import fuzzy.rule.RuleWeight;
 
 public class FuzzyRuleTest {
 	@Test

@@ -1,4 +1,4 @@
-package fuzzy.factory;
+package fuzzy.rule.example;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -6,47 +6,37 @@ import java.util.concurrent.ExecutionException;
 
 import data.ClassLabel;
 import data.DataSet;
-import fuzzy.Antecedent;
-import fuzzy.FuzzyRule;
-import fuzzy.RuleWeight;
+import fuzzy.rule.Antecedent;
+import fuzzy.rule.Consequent;
+import fuzzy.rule.RuleWeight;
+import fuzzy.rule.factory.ConsequentFactory;
 import utility.Parallel;
 
-public abstract class FuzzyRuleFactory {
+public class MoFGBML_ConsequentFactory implements ConsequentFactory {
 	// ************************************************************
 	// Fields
 	/**  */
-	protected Antecedent antecedent;
-	/**  */
-	protected DataSet train;
+	DataSet train;
 
 	// ************************************************************
 	// Constructor
 
 	// ************************************************************
 	// Methods
-	public abstract FuzzyRule create();
 
 	/**
-	 * Shallow copy
-	 */
-	public void setAntecedent(Antecedent antecedent) {
-		this.antecedent = antecedent;
-	}
-
-	/**
-	 * Shallow copy
+	 *
 	 */
 	public void setTrain(DataSet train) {
 		this.train = train;
 	}
 
 	/**
-	 * 各クラスへの信頼度を返す
-	 * @return 信頼度
+	 *
 	 */
-	public double[] calcConfidence() {
+	@Override
+	public Consequent learning(Antecedent antecedent) {
 		try {
-			if(this.antecedent == null) throw new NullPointerException("[antecedent] is not set.");
 			if(this.train == null) throw new NullPointerException("[train] is not set.");
 		}
 		catch(NullPointerException e) {
@@ -54,6 +44,22 @@ public abstract class FuzzyRuleFactory {
 			return null;
 		}
 
+		double[] confidence = this.calcConfidence(antecedent);
+		ClassLabel classLabel = this.calcClassLabel(confidence);
+		RuleWeight ruleWeight = this.calcRuleWeight(classLabel, confidence);
+
+		Consequent consequent = Consequent.builder()
+								.consequentClass(classLabel)
+								.ruleWeight(ruleWeight)
+								.build();
+		return consequent;
+	}
+
+	/**
+	 * 各クラスへの信頼度を返す
+	 * @return 信頼度
+	 */
+	public double[] calcConfidence(Antecedent antecedent) {
 		int Cnum = train.getCnum();
 		double[] confidence = new double[Cnum];
 
@@ -140,5 +146,4 @@ public abstract class FuzzyRuleFactory {
 		ruleWeight.addRuleWeight(CF);
 		return ruleWeight;
 	}
-
 }

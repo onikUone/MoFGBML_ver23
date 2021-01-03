@@ -1,6 +1,6 @@
-package fuzzy;
+package fuzzy.rule;
 
-public class FuzzyRule {
+public class FuzzyRule implements Rule {
 	// ************************************************************
 	// Fields
 

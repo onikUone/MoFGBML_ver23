@@ -1,8 +1,10 @@
-package fuzzy;
+package fuzzy.rule;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import fuzzy.rule.RuleWeight;
 
 public class RuleWeightTest {
 

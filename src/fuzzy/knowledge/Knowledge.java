@@ -1,4 +1,4 @@
-package fuzzy;
+package fuzzy.knowledge;
 
 import jfml.term.FuzzyTermType;
 

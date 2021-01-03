@@ -1,10 +1,12 @@
-package fuzzy;
+package fuzzy.rule;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import data.ClassLabel;
+import fuzzy.rule.Consequent;
+import fuzzy.rule.RuleWeight;
 
 public class ConsequentTest {
 	@Test

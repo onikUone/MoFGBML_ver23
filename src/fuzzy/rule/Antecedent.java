@@ -1,5 +1,6 @@
-package fuzzy;
+package fuzzy.rule;
 
+import fuzzy.knowledge.Knowledge;
 import jfml.term.FuzzyTermType;
 
 public class Antecedent {
@@ -37,6 +38,29 @@ public class Antecedent {
 			grade *= antecedentFuzzySets[i].getMembershipValue((float)x[i]);
 		}
 		return grade;
+	}
+
+	/**
+	 *
+	 */
+	public int getDimension() {
+		return this.antecedentIndex.length;
+	}
+
+	/**
+	 *
+	 */
+	public int getAntecedentIndexAt(int index) {
+		return this.antecedentIndex[index];
+	}
+
+	/**
+	 *
+	 * @param index
+	 * @return
+	 */
+	public FuzzyTermType getAntecedentFuzzySetAt(int index) {
+		return this.antecedentFuzzySets[index];
 	}
 
 	/**

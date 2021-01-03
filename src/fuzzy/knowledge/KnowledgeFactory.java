@@ -1,6 +1,4 @@
-package fuzzy.factory;
-
-import fuzzy.Knowledge;
+package fuzzy.knowledge;
 
 public abstract class KnowledgeFactory {
 	// ************************************************************
