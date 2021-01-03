@@ -21,7 +21,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>main.Main</mainClass>
+              <mainClass>cilabo.main.Main</mainClass>
               <addClasspath>true</addClasspath>
               <addExtensions>true</addExtensions>
               <packageName>main</packageName>
