@@ -118,6 +118,9 @@ public class GeneralFunctions {
 			list.add(i);
 		}
 		for(int i = 0; i < want; i++) {
+			if(list.size() == 0) {
+				break;
+			}
 			int index = uniqueRnd.nextInt(list.size());
 			answer[i] = list.get(index);
 			list.remove(index);

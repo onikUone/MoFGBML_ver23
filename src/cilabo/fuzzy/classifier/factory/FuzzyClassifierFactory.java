@@ -12,6 +12,9 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 	// ************************************************************
 	// Fields
 	/**  */
+	protected PreProcessing preProcessing;
+
+	/**  */
 	protected AntecedentFactory antecedentFactory;
 
 	/**  */
@@ -36,6 +39,10 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 
 	// ************************************************************
 	// Methods
+
+	public void setPreProcessing(PreProcessing preProcessing) {
+		this.preProcessing = preProcessing;
+	}
 
 	public void setAntecedentFactory(AntecedentFactory antecedentFactory) {
 		this.antecedentFactory = antecedentFactory;
@@ -69,6 +76,9 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 		FuzzyClassifier classifier = new FuzzyClassifier();
 		classifier.setClassification(classification);
 
+		// Pre Processing
+		preProcessing.preProcess(classifier);
+
 		// Create rule
 		for(int i = 0; i < ruleNum; i++) {
 			Antecedent antecedent = antecedentFactory.create();
@@ -94,6 +104,7 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 
 	public static class FuzzyClassifierFactoryBuilder {
 
+		private PreProcessing preProcessing;
 		private AntecedentFactory antecedentFactory;
 		private ConsequentFactory consequentFactory;
 		private PostProcessing postProcessing;
@@ -102,6 +113,11 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 		private int ruleNum = -1;
 
 		FuzzyClassifierFactoryBuilder() {}
+
+		public FuzzyClassifierFactory.FuzzyClassifierFactoryBuilder preProcessing(PreProcessing preProcessing) {
+			this.preProcessing = preProcessing;
+			return this;
+		}
 
 		public FuzzyClassifierFactory.FuzzyClassifierFactoryBuilder antecedentFactory(AntecedentFactory antecedentFactory) {
 			this.antecedentFactory = antecedentFactory;
@@ -133,7 +149,42 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 			return this;
 		}
 
+		public void checkException() {
+			try {
+				if(this.preProcessing == null) throw new NullPointerException("[preProcessing] is not initialized.");
+				if(this.antecedentFactory == null) throw new NullPointerException("[antecedentFactory] is not initialized.");
+				if(this.consequentFactory == null) throw new NullPointerException("[consequentFactory] is not initialized.");
+				if(this.postProcessing == null) throw new NullPointerException("[postProcessing] is not initialized.");
+				if(this.classification == null) throw new NullPointerException("[classification] is not initialized.");
+				if(this.train == null) throw new NullPointerException("[train] is not initialized.");
+				if(this.ruleNum == -1) throw new IllegalStateException("[ruleNum] is not initialized.");
+			}
+			catch(NullPointerException e) {
+				System.out.println(e);
+				return;
+			}
+		}
+
 		/**
+		 * @param preProcessing : PreProcessing
+		 * @param antecedentFactory : AntecedentFactory
+		 * @param consequentFactory : ConsequentFactory
+		 * @param classification : Classification
+		 * @param train : DataSet
+		 * @param ruleNum : int
+		 */
+		public void setFactory(FuzzyClassifierFactory factory) {
+			factory.setPreProcessing(preProcessing);
+			factory.setAntecedentFactory(antecedentFactory);
+			factory.setConsequentFactory(consequentFactory);
+			factory.setPostProcessing(postProcessing);
+			factory.setClassification(classification);
+			factory.setDataSet(train);
+			factory.setRuleNum(ruleNum);
+		}
+
+		/**
+		 * @param preProcessing : PreProcessing
 		 * @param antecedentFactory : AntecedentFactory
 		 * @param consequentFactory : ConsequentFactory
 		 * @param classification : Classification
@@ -141,28 +192,10 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 		 * @param ruleNum : int
 		 */
 		public FuzzyClassifierFactory build() {
-			try {
-				if(this.antecedentFactory == null) throw new NullPointerException("[antecedentFactory] is not initialized.");
-				if(this.consequentFactory == null) throw new NullPointerException("[consequentFactory] is not initialized.");
-				if(this.postProcessing == null) throw new NullPointerException("[postProcessing] is not initialized.");
-				if(this.classification == null) throw new NullPointerException("[classification] is not initialized.");
-				if(this.train == null) throw new NullPointerException("[train] is not initialized.");
-				if(this.ruleNum == -1) throw new IllegalStateException("[ruleNum] is not initialized.");
-
-				FuzzyClassifierFactory factory = new FuzzyClassifierFactory();
-				factory.setAntecedentFactory(antecedentFactory);
-				factory.setConsequentFactory(consequentFactory);
-				factory.setPostProcessing(postProcessing);
-				factory.setClassification(classification);
-				factory.setDataSet(train);
-				factory.setRuleNum(ruleNum);
-
-				return factory;
-			}
-			catch(NullPointerException e) {
-				System.out.println(e);
-				return null;
-			}
+			checkException();
+			FuzzyClassifierFactory factory = new FuzzyClassifierFactory();
+			setFactory(factory);
+			return factory;
 		}
 	}
 }

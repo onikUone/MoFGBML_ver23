@@ -74,20 +74,33 @@ public class RandomInitialization implements AntecedentFactory {
 			return this;
 		}
 
-		/**
-		 * @param seed : int
-		 * @param knowledge : Knowledge
-		 */
-		public RandomInitialization build() {
+		public void checkException() {
 			try {
 				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not set.");
 			}
 			catch(NullPointerException e) {
 				System.out.println(e);
 			}
-			RandomInitialization factory = new RandomInitialization();
+		}
+
+		/**
+		 * @param seed : int
+		 * @param knowledge : Knowledge
+		 */
+		public void setFactory(RandomInitialization factory) {
 			factory.setSeed(seed);
 			factory.setKnowledge(knowledge);
+		}
+
+		/**
+		 * @param seed : int
+		 * @param knowledge : Knowledge
+		 */
+		public RandomInitialization build() {
+			checkException();
+
+			RandomInitialization factory = new RandomInitialization();
+			setFactory(factory);
 			return factory;
 		}
 	}
