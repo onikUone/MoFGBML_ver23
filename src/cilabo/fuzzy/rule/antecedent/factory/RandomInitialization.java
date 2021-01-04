@@ -74,6 +74,11 @@ public class RandomInitialization implements AntecedentFactory {
 			return this;
 		}
 
+		public RandomInitialization.RandomInitializationBuilder knowledge(Knowledge knowledge) {
+			this.knowledge = knowledge;
+			return this;
+		}
+
 		public void checkException() {
 			try {
 				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not set.");

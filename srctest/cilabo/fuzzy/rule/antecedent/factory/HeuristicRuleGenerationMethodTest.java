@@ -9,7 +9,7 @@ import org.junit.Test;
 import cilabo.data.DataSet;
 import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.knowledge.example.HomoTriangleKnowledgeFactory;
-import cilabo.fuzzy.membershipParams.HomoTriangle_2_3_4_5;
+import cilabo.fuzzy.knowledge.membershipParams.HomoTriangle_2_3_4_5;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.utility.Input;
 

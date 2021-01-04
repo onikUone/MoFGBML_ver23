@@ -1,4 +1,4 @@
-package cilabo.fuzzy.membershipParams;
+package cilabo.fuzzy.knowledge.membershipParams;
 
 public class HomoTriangle_2_3_4_5 {
 	static float[][] params = new float[][]

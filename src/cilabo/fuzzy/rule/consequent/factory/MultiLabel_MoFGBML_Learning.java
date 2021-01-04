@@ -118,4 +118,18 @@ public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements Con
 		}
 		return ruleWeight;
 	}
+
+	public static MultiLabel_MoFGBML_Learning.MultiLabel_MoFGBML_LearningBuilder builder() {
+		return new MultiLabel_MoFGBML_LearningBuilder();
+	}
+
+	public static class MultiLabel_MoFGBML_LearningBuilder extends MoFGBML_LearningBuilder {
+		@Override
+		public MultiLabel_MoFGBML_Learning build() {
+			checkException();
+			MultiLabel_MoFGBML_Learning factory = new MultiLabel_MoFGBML_Learning();
+			setFactory(factory);
+			return factory;
+		}
+	}
 }

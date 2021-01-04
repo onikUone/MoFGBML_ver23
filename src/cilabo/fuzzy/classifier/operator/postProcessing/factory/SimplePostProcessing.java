@@ -1,4 +1,4 @@
-package cilabo.fuzzy.classifier.example;
+package cilabo.fuzzy.classifier.operator.postProcessing.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 import cilabo.fuzzy.classifier.Classifier;
 import cilabo.fuzzy.classifier.FuzzyClassifier;
-import cilabo.fuzzy.classifier.factory.PostProcessing;
+import cilabo.fuzzy.classifier.operator.postProcessing.PostProcessing;
 import cilabo.fuzzy.rule.FuzzyRule;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 

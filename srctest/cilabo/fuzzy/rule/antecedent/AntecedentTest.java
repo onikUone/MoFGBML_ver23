@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.knowledge.example.HomoTriangleKnowledgeFactory;
-import cilabo.fuzzy.membershipParams.HomoTriangle_3_4_5;
+import cilabo.fuzzy.knowledge.membershipParams.HomoTriangle_3_4_5;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 
 public class AntecedentTest {

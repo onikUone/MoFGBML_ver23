@@ -36,14 +36,6 @@ public class MoFGBML_Learning implements ConsequentFactory {
 	 */
 	@Override
 	public Consequent learning(Antecedent antecedent) {
-		try {
-			if(this.train == null) throw new NullPointerException("[train] is not set.");
-		}
-		catch(NullPointerException e) {
-			System.out.println(e);
-			return null;
-		}
-
 		double[] confidence = this.calcConfidence(antecedent);
 		ClassLabel classLabel = this.calcClassLabel(confidence);
 		RuleWeight ruleWeight = this.calcRuleWeight(classLabel, confidence);
@@ -137,7 +129,11 @@ public class MoFGBML_Learning implements ConsequentFactory {
 
 	public RuleWeight calcRuleWeight(ClassLabel consequentClass, double[] confidence) {
 		// 生成不可能ルール判定
-		if(consequentClass.getClassLabel() == -1) { return null; }
+		if(consequentClass.getClassLabel() == -1) {
+			RuleWeight zeroWeight = new RuleWeight();
+			zeroWeight.addRuleWeight(0.0);
+			return zeroWeight;
+		}
 
 		int C = consequentClass.getClassLabel();
 		double sumConfidence = Arrays.stream(confidence).sum();
@@ -145,5 +141,45 @@ public class MoFGBML_Learning implements ConsequentFactory {
 		RuleWeight ruleWeight = new RuleWeight();
 		ruleWeight.addRuleWeight(CF);
 		return ruleWeight;
+	}
+
+	public static MoFGBML_Learning.MoFGBML_LearningBuilder builder() {
+		return new MoFGBML_LearningBuilder();
+	}
+
+	public static class MoFGBML_LearningBuilder {
+		private DataSet train;
+
+		MoFGBML_LearningBuilder() {}
+
+		public MoFGBML_Learning.MoFGBML_LearningBuilder train(DataSet train) {
+			this.train = train;
+			return this;
+		}
+
+		public void checkException() {
+			try {
+				if(this.train == null) throw new NullPointerException("[train] is not set.");
+			}
+			catch(NullPointerException e) {
+				System.out.println(this.getClass().toString());
+				System.out.println(e);
+				e.printStackTrace();
+			}
+		}
+
+		public void setFactory(MoFGBML_Learning factory) {
+			factory.setTrain(train);
+		}
+
+		/**
+		 * @param train : DataSet
+		 */
+		public MoFGBML_Learning build() {
+			checkException();
+			MoFGBML_Learning factory = new MoFGBML_Learning();
+			setFactory(factory);
+			return factory;
+		}
 	}
 }

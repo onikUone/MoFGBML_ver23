@@ -1,4 +1,4 @@
-package cilabo.fuzzy.classifier.factory;
+package cilabo.fuzzy.classifier.operator.preProcessing;
 
 import cilabo.fuzzy.classifier.Classifier;
 

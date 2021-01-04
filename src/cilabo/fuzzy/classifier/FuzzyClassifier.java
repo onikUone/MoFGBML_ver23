@@ -3,7 +3,7 @@ package cilabo.fuzzy.classifier;
 import java.util.ArrayList;
 
 import cilabo.data.InputVector;
-import cilabo.fuzzy.classifier.factory.Classification;
+import cilabo.fuzzy.classifier.operator.classification.Classification;
 import cilabo.fuzzy.rule.FuzzyRule;
 
 public class FuzzyClassifier implements Classifier {
@@ -28,7 +28,7 @@ public class FuzzyClassifier implements Classifier {
 	 */
 	@Override
 	public FuzzyRule classify(InputVector vector) {
-		return (FuzzyRule)this.classification.classify(vector);
+		return (FuzzyRule)this.classification.classify(this, vector);
 	}
 
 	/**
@@ -36,6 +36,17 @@ public class FuzzyClassifier implements Classifier {
 	 */
 	public int getRuleNum() {
 		return this.ruleSet.size();
+	}
+
+	/**
+	 *
+	 */
+	public int getRuleLength() {
+		int length = 0;
+		for(int i = 0; i < ruleSet.size(); i++) {
+			length += ruleSet.get(i).getAntecedent().getRuleLength();
+		}
+		return length;
 	}
 
 	/**

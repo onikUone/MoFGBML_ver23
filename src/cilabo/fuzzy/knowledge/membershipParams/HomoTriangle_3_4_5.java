@@ -1,4 +1,4 @@
-package cilabo.fuzzy.membershipParams;
+package cilabo.fuzzy.knowledge.membershipParams;
 
 public class HomoTriangle_3_4_5 {
 

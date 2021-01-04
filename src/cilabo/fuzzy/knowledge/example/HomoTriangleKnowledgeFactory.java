@@ -32,11 +32,11 @@ public class HomoTriangleKnowledgeFactory extends KnowledgeFactory {
 		final FuzzyTermType[][] fuzzySets = new FuzzyTermType[dimension][fuzzySetNum+1];
 		for(int i = 0; i < dimension; i++) {
 			//Don't care
-			fuzzySets[i][0] = new FuzzyTermType("0",
+			fuzzySets[i][0] = new FuzzyTermType(" 0",
 												FuzzyTermType.TYPE_rectangularShape,
 												new float[] {0f, 1f});
 			for(int j = 1; j < fuzzySetNum+1; j++) {
-				String name = String.valueOf(j);
+				String name = String.format("%2s", String.valueOf(j));
 				int shapeType = FuzzyTermType.TYPE_triangularShape;
 				float[] param = params[j-1];
 				fuzzySets[i][j] = new FuzzyTermType(name, shapeType, param);

@@ -5,18 +5,25 @@ import java.util.Arrays;
 
 import cilabo.data.DataSet;
 import cilabo.data.Pattern;
+import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.fuzzy.rule.antecedent.AntecedentFactory;
 import cilabo.main.Consts;
+import random.MersenneTwisterFast;
 
-public class HeuristicRuleGenerationMethod extends RandomInitialization implements AntecedentFactory {
+public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 	// ************************************************************
 	// Fields
+
+	MersenneTwisterFast uniqueRnd;
+
+	/**  */
+	Knowledge knowledge;
 
 	/**  */
 	DataSet train;
 
-	/**  */
+	/** Internal parmeter */
 	ArrayList<Integer> samplingIndex;
 
 	// ************************************************************
@@ -88,6 +95,20 @@ public class HeuristicRuleGenerationMethod extends RandomInitialization implemen
 	}
 
 	/**
+	 *
+	 */
+	public void setSeed(int seed) {
+		this.uniqueRnd = new MersenneTwisterFast(seed);
+	}
+
+	/**
+	 *
+	 */
+	public void setKnowledge(Knowledge knowledge) {
+		this.knowledge = knowledge;
+	}
+
+	/**
 	 * Shallow copy
 	 */
 	public void setTrain(DataSet train) {
@@ -106,11 +127,23 @@ public class HeuristicRuleGenerationMethod extends RandomInitialization implemen
 		return new HeuristicRuleGenerationMethodBuilder();
 	}
 
-	public static class HeuristicRuleGenerationMethodBuilder extends RandomInitializationBuilder {
+	public static class HeuristicRuleGenerationMethodBuilder {
+		private int seed = -1;
+		private Knowledge knowledge;
 		private DataSet train;
 		private Integer[] samplingIndex;
 
 		HeuristicRuleGenerationMethodBuilder() {}
+
+		public HeuristicRuleGenerationMethod.HeuristicRuleGenerationMethodBuilder seed(int seed) {
+			this.seed = seed;
+			return this;
+		}
+
+		public HeuristicRuleGenerationMethod.HeuristicRuleGenerationMethodBuilder knowledge(Knowledge knowledge){
+			this.knowledge = knowledge;
+			return this;
+		}
 
 		public HeuristicRuleGenerationMethod.HeuristicRuleGenerationMethodBuilder samplingIndex(Integer[] samplingIndex) {
 			this.samplingIndex = samplingIndex;
@@ -122,11 +155,11 @@ public class HeuristicRuleGenerationMethod extends RandomInitialization implemen
 			return this;
 		}
 
-		@Override
 		public void checkException() {
-			super.checkException();
 			try {
+				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not set.");
 				if(this.train == null) throw new NullPointerException("[train] is not set.");
+				if(this.samplingIndex == null) throw new NullPointerException("[samplingIndex] is not set.");
 			}
 			catch (NullPointerException e) {
 				System.out.println(e);
@@ -140,7 +173,8 @@ public class HeuristicRuleGenerationMethod extends RandomInitialization implemen
 		 * @param samplingIndex : Integer[]
 		 */
 		public void setFactory(HeuristicRuleGenerationMethod factory) {
-			super.setFactory(factory);
+			factory.setSeed(seed);
+			factory.setKnowledge(knowledge);
 			factory.setTrain(train);
 			factory.setSamplingIndex(samplingIndex);
 		}
@@ -151,7 +185,6 @@ public class HeuristicRuleGenerationMethod extends RandomInitialization implemen
 		 * @param train : DataSet
 		 * @param samplingIndex : Integer[]
 		 */
-		@Override
 		public HeuristicRuleGenerationMethod build() {
 			checkException();
 			HeuristicRuleGenerationMethod factory = new HeuristicRuleGenerationMethod();

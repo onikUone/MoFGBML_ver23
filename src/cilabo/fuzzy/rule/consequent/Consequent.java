@@ -96,7 +96,9 @@ public class Consequent {
 				return new Consequent(consequentClass, ruleWeight);
 			}
 			catch(NullPointerException e) {
+				System.out.println(this.getClass().toString());
 				System.out.println(e);
+				e.printStackTrace();
 				return null;
 			}
 		}

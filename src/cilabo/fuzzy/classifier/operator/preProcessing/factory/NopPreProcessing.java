@@ -1,7 +1,7 @@
-package cilabo.fuzzy.classifier.example;
+package cilabo.fuzzy.classifier.operator.preProcessing.factory;
 
 import cilabo.fuzzy.classifier.Classifier;
-import cilabo.fuzzy.classifier.factory.PreProcessing;
+import cilabo.fuzzy.classifier.operator.preProcessing.PreProcessing;
 
 public class NopPreProcessing implements PreProcessing {
 
