@@ -15,7 +15,7 @@ import cilabo.fuzzy.classifier.operator.postProcessing.factory.SimplePostProcess
 import cilabo.fuzzy.classifier.operator.preProcessing.PreProcessing;
 import cilabo.fuzzy.classifier.operator.preProcessing.factory.NopPreProcessing;
 import cilabo.fuzzy.knowledge.Knowledge;
-import cilabo.fuzzy.knowledge.example.HomoTriangleKnowledgeFactory;
+import cilabo.fuzzy.knowledge.factory.HomoTriangleKnowledgeFactory;
 import cilabo.fuzzy.knowledge.membershipParams.HomoTriangle_3;
 import cilabo.fuzzy.rule.FuzzyRule;
 import cilabo.fuzzy.rule.antecedent.AntecedentFactory;

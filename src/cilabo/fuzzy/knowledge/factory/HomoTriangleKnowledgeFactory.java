@@ -1,4 +1,4 @@
-package cilabo.fuzzy.knowledge.example;
+package cilabo.fuzzy.knowledge.factory;
 
 import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.knowledge.KnowledgeFactory;
@@ -34,7 +34,7 @@ public class HomoTriangleKnowledgeFactory extends KnowledgeFactory {
 			//Don't care
 			fuzzySets[i][0] = new FuzzyTermType(" 0",
 												FuzzyTermType.TYPE_rectangularShape,
-												new float[] {0f, 1f});
+												new float[] {-10000f, 1f});
 			for(int j = 1; j < fuzzySetNum+1; j++) {
 				String name = String.format("%2s", String.valueOf(j));
 				int shapeType = FuzzyTermType.TYPE_triangularShape;

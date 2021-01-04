@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import cilabo.fuzzy.knowledge.Knowledge;
-import cilabo.fuzzy.knowledge.example.HomoTriangleKnowledgeFactory;
+import cilabo.fuzzy.knowledge.factory.HomoTriangleKnowledgeFactory;
 import cilabo.fuzzy.knowledge.membershipParams.HomoTriangle_3_4_5;
 
 public class KnowledgeTest {

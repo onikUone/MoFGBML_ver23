@@ -22,7 +22,12 @@ public class Antecedent {
 		this.antecedentIndex = antecedentIndex;
 		this.antecedentFuzzySets = new FuzzyTermType[antecedentIndex.length];
 		for(int i = 0; i < antecedentIndex.length; i++) {
-			antecedentFuzzySets[i] = knowledge.getFuzzySet(i, antecedentIndex[i]);
+			if(antecedentIndex[i] < 0) {
+				antecedentFuzzySets[i] = null;
+			}
+			else {
+				antecedentFuzzySets[i] = knowledge.getFuzzySet(i, antecedentIndex[i]);
+			}
 		}
 	}
 
@@ -35,7 +40,15 @@ public class Antecedent {
 	public double getCompatibleGrade(double[] x) {
 		double grade = 1;
 		for(int i = 0; i < x.length; i++) {
-			grade *= antecedentFuzzySets[i].getMembershipValue((float)x[i]);
+			if(antecedentIndex[i] < 0) {
+				// categorical
+				if(antecedentIndex[i] == (int)x[i]) grade *= 1.0;
+				else grade *= 0.0;
+			}
+			else {
+				// numerical
+				grade *= antecedentFuzzySets[i].getMembershipValue((float)x[i]);
+			}
 		}
 		return grade;
 	}

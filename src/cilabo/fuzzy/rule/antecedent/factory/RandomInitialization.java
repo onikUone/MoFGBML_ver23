@@ -1,5 +1,7 @@
 package cilabo.fuzzy.rule.antecedent.factory;
 
+import cilabo.data.DataSet;
+import cilabo.data.Pattern;
 import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.fuzzy.rule.antecedent.AntecedentFactory;
@@ -14,6 +16,9 @@ public class RandomInitialization implements AntecedentFactory {
 	/**  */
 	Knowledge knowledge;
 
+	/**  */
+	DataSet train;
+
 	// ************************************************************
 	// Constructor
 
@@ -25,6 +30,10 @@ public class RandomInitialization implements AntecedentFactory {
 
 	public void setKnowledge(Knowledge knowledge) {
 		this.knowledge = knowledge;
+	}
+
+	public void setTrain(DataSet train) {
+		this.train = train;
 	}
 
 	@Override
@@ -41,14 +50,24 @@ public class RandomInitialization implements AntecedentFactory {
 		}
 
 		int[] antecedentIndex = new int[dimension];
+
+		Pattern randomPattern = train.getPattern(uniqueRnd.nextInt(train.getDataSize()));
+
 		for(int n = 0; n < dimension; n++) {
 			if(uniqueRnd.nextDoubleIE() < dcRate) {
 				// don't care
 				antecedentIndex[n] = 0;
 			}
 			else {
-				// Fuzzy Set
-				antecedentIndex[n] = 1 + uniqueRnd.nextInt(knowledge.getFuzzySetNum(n));
+				// Judge which dimension n is categorical or numerical.
+				if(randomPattern.getDimValue(n) < 0) {
+					// Categorical
+					antecedentIndex[n] = (int)randomPattern.getDimValue(n);
+				}
+				else {
+					// Numerical
+					antecedentIndex[n] = 1 + uniqueRnd.nextInt(knowledge.getFuzzySetNum(n));
+				}
 			}
 		}
 
@@ -66,6 +85,7 @@ public class RandomInitialization implements AntecedentFactory {
 	public static class RandomInitializationBuilder {
 		private int seed = -1;
 		private Knowledge knowledge;
+		private DataSet train;
 
 		RandomInitializationBuilder() {}
 
@@ -79,9 +99,15 @@ public class RandomInitialization implements AntecedentFactory {
 			return this;
 		}
 
+		public RandomInitialization.RandomInitializationBuilder train(DataSet train) {
+			this.train = train;
+			return this;
+		}
+
 		public void checkException() {
 			try {
 				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not set.");
+				if(this.train == null) throw new NullPointerException("[train] is not set.");
 			}
 			catch(NullPointerException e) {
 				System.out.println(e);
@@ -91,19 +117,21 @@ public class RandomInitialization implements AntecedentFactory {
 		/**
 		 * @param seed : int
 		 * @param knowledge : Knowledge
+		 * @param train : DataSet
 		 */
 		public void setFactory(RandomInitialization factory) {
 			factory.setSeed(seed);
 			factory.setKnowledge(knowledge);
+			factory.setTrain(train);
 		}
 
 		/**
 		 * @param seed : int
 		 * @param knowledge : Knowledge
+		 * @param train : DataSet
 		 */
 		public RandomInitialization build() {
 			checkException();
-
 			RandomInitialization factory = new RandomInitialization();
 			setFactory(factory);
 			return factory;
