@@ -25,7 +25,7 @@ import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.utility.Input;
 
 public class FuzzyClassifierFactoryTest {
-	public FuzzyClassifier makeClassifier(DataSet train) {
+	public static FuzzyClassifier makeClassifier(DataSet train) {
 		int dimension = train.getNdim();
 		float[][] params = HomoTriangle_3.getParams();
 		Knowledge knowledge = HomoTriangleKnowledgeFactory.builder()
