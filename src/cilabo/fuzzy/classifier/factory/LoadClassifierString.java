@@ -22,7 +22,6 @@ public class LoadClassifierString implements ClassifierFactory {
 
 	Knowledge knowledge;
 
-
 	// ************************************************************
 	// Constructor
 	public LoadClassifierString(String classifierString, Knowledge knowledge) {
