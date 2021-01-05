@@ -1,4 +1,4 @@
-package cilabo.fuzzy.classifier;
+package cilabo.fuzzy.classifier.factory;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import cilabo.data.DataSet;
 import cilabo.data.Pattern;
+import cilabo.fuzzy.classifier.ClassifierFactory;
+import cilabo.fuzzy.classifier.FuzzyClassifier;
 import cilabo.fuzzy.classifier.operator.classification.Classification;
 import cilabo.fuzzy.classifier.operator.classification.factory.SingleWinnerRuleSelection;
 import cilabo.fuzzy.classifier.operator.postProcessing.PostProcessing;
@@ -25,6 +27,29 @@ import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.utility.Input;
 
 public class FuzzyClassifierFactoryTest {
+
+	public static DataSet makeTestTrain() {
+		String sep = File.separator;
+		String dataName = "dataset" + sep + "cilabo" + sep + "kadai5_pattern1.txt";
+		DataSet train = new DataSet();
+		Input.inputSingleLabelDataSet(train, dataName);
+
+		return train;
+	}
+
+	public static Knowledge makeTestKnowledge() {
+		DataSet train = makeTestTrain();
+
+		int dimension = train.getNdim();
+		float[][] params = HomoTriangle_3.getParams();
+		Knowledge knowledge = HomoTriangleKnowledgeFactory.builder()
+								.dimension(dimension)
+								.params(params)
+								.build()
+								.create();
+		return knowledge;
+	}
+
 	public static FuzzyClassifier makeClassifier(DataSet train) {
 		int dimension = train.getNdim();
 		float[][] params = HomoTriangle_3.getParams();
@@ -86,9 +111,6 @@ public class FuzzyClassifierFactoryTest {
 
 		FuzzyClassifier classifier = makeClassifier(train);
 
-		String expected = classifier.toString();
-		System.out.println(expected);
-
 		// RuleNum
 		assertEquals(classifier.getRuleNum(), 13);
 
@@ -108,9 +130,6 @@ public class FuzzyClassifierFactoryTest {
 		Input.inputSingleLabelDataSet(train, dataName);
 
 		FuzzyClassifier classifier = makeClassifier(train);
-
-		String expected = classifier.toString();
-		System.out.println(expected);
 
 		// RuleNum
 		assertEquals(classifier.getRuleNum(), 12);

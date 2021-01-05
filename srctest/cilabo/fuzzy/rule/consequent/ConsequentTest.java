@@ -5,15 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import cilabo.data.ClassLabel;
-import cilabo.fuzzy.rule.consequent.Consequent;
-import cilabo.fuzzy.rule.consequent.RuleWeight;
 
 public class ConsequentTest {
 	@Test
 	public void testSingleLabel() {
 		Integer C = 7;
 		Double w = 0.5;
-		String actual = "class:[7],weight:[0.5]";
+		String actual = "class:[7] weight:[0.5]";
 
 		ClassLabel classLabel = new ClassLabel();
 		classLabel.addClassLabel(C);
@@ -34,7 +32,7 @@ public class ConsequentTest {
 	public void testMultiLabel() {
 		Integer[] cVec = new Integer[] {1, 0, 1};
 		Double[] wVec = new Double[] {0.5, 0.8, 0.9};
-		String actual = "class:[1, 0, 1],weight:[0.5, 0.8, 0.9]";
+		String actual = "class:[1, 0, 1] weight:[0.5, 0.8, 0.9]";
 
 		ClassLabel classLabel = new ClassLabel();
 		classLabel.addClassLabels(cVec);

@@ -8,6 +8,27 @@ import random.MersenneTwisterFast;
 public class GeneralFunctions {
 
 	/**
+	 * <h1> Uniform variant line separator</h1>
+	 * @param original : String
+	 * @return String
+	 */
+	public static String uniformLineSeparator(String original) {
+		String windows = "\r\n";
+		String mac = "\n\r";
+		String unix = "\n";
+		String ln = System.lineSeparator();
+		if(original.contains(windows)) {
+			 return original.replace(windows, ln);
+		}
+		else if(original.contains(mac)) {
+			return original.replace(mac, ln);
+		}
+		else {
+			return original.replace(unix, ln);
+		}
+	}
+
+	/**
 	 * <h1>Distance between 2 vectors.</h1>
 	 * @param vector1 : double[] :
 	 * @param vector2 : double[] :

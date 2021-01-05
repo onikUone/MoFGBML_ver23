@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.classifier.FuzzyClassifier;
-import cilabo.fuzzy.classifier.FuzzyClassifierFactoryTest;
+import cilabo.fuzzy.classifier.factory.FuzzyClassifierFactoryTest;
 import cilabo.utility.Input;
 
 public class RuleLengthMetricTest {

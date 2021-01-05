@@ -51,7 +51,7 @@ public class Consequent {
 		str += this.consequentClass.toString();
 		str += "]";
 
-		str += ",";
+		str += " ";
 
 		// RuleWeight
 		str += "weight:[";

@@ -8,7 +8,6 @@ import cilabo.data.ClassLabel;
 import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.knowledge.factory.HomoTriangleKnowledgeFactory;
 import cilabo.fuzzy.knowledge.membershipParams.HomoTriangle_3_4_5;
-import cilabo.fuzzy.rule.FuzzyRule;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.fuzzy.rule.consequent.Consequent;
 import cilabo.fuzzy.rule.consequent.RuleWeight;
@@ -47,7 +46,7 @@ public class FuzzyRuleTest {
 						.consequent(consequent)
 						.build();
 
-		String actual = "If [0, 2, 1] Then class:[7],weight:[0.5]";
+		String actual = "If [ 0,  2,  1] Then class:[7] weight:[0.5]";
 
 		String expected = rule.toString();
 

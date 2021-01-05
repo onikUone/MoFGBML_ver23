@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import cilabo.fuzzy.knowledge.Knowledge;
-import cilabo.fuzzy.knowledge.factory.HomoTriangleKnowledgeFactory;
 import cilabo.fuzzy.knowledge.membershipParams.HomoTriangle_3_4_5;
 import jfml.term.FuzzyTermType;
 
@@ -20,9 +19,9 @@ public class HomoTriangleKnowledgeFactoryTest {
 		FuzzyTermType[][] fuzzySets = new FuzzyTermType[dimension][params.length+1];
 		for(int i = 0; i < dimension; i++) {
 			//Don't care
-			fuzzySets[i][0] = new FuzzyTermType("0", FuzzyTermType.TYPE_rectangularShape, new float[] {0f, 1f});
+			fuzzySets[i][0] = new FuzzyTermType(" 0", FuzzyTermType.TYPE_rectangularShape, new float[] {-10000f, 1f});
 			for(int j = 0; j < params.length; j++) {
-				fuzzySets[i][j+1] = new FuzzyTermType(String.valueOf(j+1), FuzzyTermType.TYPE_triangularShape, params[j]);
+				fuzzySets[i][j+1] = new FuzzyTermType(String.format("%2s", String.valueOf(j+1)), FuzzyTermType.TYPE_triangularShape, params[j]);
 			}
 		}
 		Knowledge actual = new Knowledge();
