@@ -89,18 +89,7 @@ public class Consequent {
 		 * @param ruleWeight : RuleWeight
 		 */
 		public Consequent build() {
-			try {
-				if(this.consequentClass == null) throw new NullPointerException("[consequentClass] is not initialized.");
-				if(this.ruleWeight == null) throw new NullPointerException("[ruleWeight] is not initialized.");
-
-				return new Consequent(consequentClass, ruleWeight);
-			}
-			catch(NullPointerException e) {
-				System.out.println(this.getClass().toString());
-				System.out.println(e);
-				e.printStackTrace();
-				return null;
-			}
+			return new Consequent(consequentClass, ruleWeight);
 		}
 	}
 }

@@ -1,15 +1,7 @@
 package cilabo.fuzzy.knowledge;
 
-public abstract class KnowledgeFactory {
-	// ************************************************************
-	// Fields
+public interface KnowledgeFactory {
 
-	// ************************************************************
-	// Constructor
-
-	// ************************************************************
-	// Methods
-
-	public abstract Knowledge create();
+	public Knowledge create();
 
 }

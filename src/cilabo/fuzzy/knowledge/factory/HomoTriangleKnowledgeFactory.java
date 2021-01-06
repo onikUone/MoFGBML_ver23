@@ -4,7 +4,7 @@ import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.knowledge.KnowledgeFactory;
 import jfml.term.FuzzyTermType;
 
-public class HomoTriangleKnowledgeFactory extends KnowledgeFactory {
+public class HomoTriangleKnowledgeFactory implements KnowledgeFactory {
 	// ************************************************************
 	// Fields
 
@@ -75,15 +75,7 @@ public class HomoTriangleKnowledgeFactory extends KnowledgeFactory {
 		 * @param params : float[][]
 		 */
 		public HomoTriangleKnowledgeFactory build() {
-			try {
-				if(this.dimension == -1) throw new IllegalStateException("[dimension] is not initialized.");
-				if(this.params == null) throw new NullPointerException("[params] is not initialized.");
-				return new HomoTriangleKnowledgeFactory(dimension, params);
-			}
-			catch (IllegalStateException | NullPointerException e) {
-				System.out.println(e);
-				return null;
-			}
+			return new HomoTriangleKnowledgeFactory(dimension, params);
 		}
 
 	}

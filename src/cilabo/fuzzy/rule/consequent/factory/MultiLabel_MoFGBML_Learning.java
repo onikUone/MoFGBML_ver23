@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 import cilabo.data.ClassLabel;
+import cilabo.data.DataSet;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.fuzzy.rule.consequent.Consequent;
 import cilabo.fuzzy.rule.consequent.ConsequentFactory;
@@ -16,6 +17,9 @@ public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements Con
 
 	// ************************************************************
 	// Constructor
+	public MultiLabel_MoFGBML_Learning(DataSet train) {
+		super(train);
+	}
 
 	// ************************************************************
 	// Methods
@@ -50,7 +54,7 @@ public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements Con
 				final int ASSOCIATE = i;
 				Optional<Double> partSum = null;
 				try {
-					partSum = Parallel.forkJoinPool.submit( () ->
+					partSum = Parallel.learningForkJoinPool.submit( () ->
 						train.getPatterns().parallelStream()
 						// 結論部クラスベクトルのCLASS番目の要素がASSOCIATEであるパターンを抽出
 						.filter(pattern -> pattern.getTrueClass().getClassVector()[CLASS] == ASSOCIATE)
@@ -124,12 +128,12 @@ public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements Con
 	}
 
 	public static class MultiLabel_MoFGBML_LearningBuilder extends MoFGBML_LearningBuilder {
+		/**
+		 * @param train : DataSet
+		 */
 		@Override
 		public MultiLabel_MoFGBML_Learning build() {
-			checkException();
-			MultiLabel_MoFGBML_Learning factory = new MultiLabel_MoFGBML_Learning();
-			setFactory(factory);
-			return factory;
+			return new MultiLabel_MoFGBML_Learning(train);
 		}
 	}
 }

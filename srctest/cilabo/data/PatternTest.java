@@ -4,19 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import cilabo.data.ClassLabel;
-import cilabo.data.InputVector;
-import cilabo.data.Pattern;
-
 public class PatternTest {
 	@Test
 	public void testGetDimValue() {
 		int id = 0;
 		double[] vector = new double[] {0, 1};
 		int dimension = vector.length;
-
-		Integer C = 7;
-		Integer[] cVec = new Integer[] {1, 0, 1};
 
 		InputVector inputVector = new InputVector(vector);
 		ClassLabel classLabel = new ClassLabel();
@@ -38,7 +31,6 @@ public class PatternTest {
 	public void testGetTrueClass() {
 		int id = 0;
 		double[] vector = new double[] {0, 1};
-		int dimension = vector.length;
 		InputVector inputVector = new InputVector(vector);
 
 		Pattern pattern;

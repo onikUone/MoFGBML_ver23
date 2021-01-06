@@ -31,11 +31,12 @@ public class HeuristicRuleGenerationMethodTest {
 
 
 		Integer[] samplingIndex = new Integer[] {0, 1};
-		HeuristicRuleGenerationMethod factory = new HeuristicRuleGenerationMethod();
-		factory.setKnowledge(knowledge);
-		factory.setSeed(0);
-		factory.setSamplingIndex(samplingIndex);
-		factory.setTrain(train);
+		HeuristicRuleGenerationMethod factory = HeuristicRuleGenerationMethod.builder()
+												.seed(0)
+												.knowledge(knowledge)
+												.train(train)
+												.samplingIndex(samplingIndex)
+												.build();
 
 		Antecedent antecedent = factory.create();
 

@@ -98,22 +98,11 @@ public class AllCombinationAntecedentFactory implements AntecedentFactory {
 			return this;
 		}
 
-		public void checkException() {
-			try {
-				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not set.");
-			}
-			catch(NullPointerException e) {
-				System.out.println(e);
-			}
-		}
-
 		/**
 		 * @param knowledge : Knowledge
 		 */
 		public AllCombinationAntecedentFactory build() {
-			checkException();
-			AllCombinationAntecedentFactory factory = new AllCombinationAntecedentFactory(knowledge);
-			return factory;
+			return new AllCombinationAntecedentFactory(knowledge);
 		}
 	}
 

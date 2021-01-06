@@ -20,16 +20,12 @@ public class MoFGBML_Learning implements ConsequentFactory {
 
 	// ************************************************************
 	// Constructor
+	public MoFGBML_Learning(DataSet train) {
+		this.train = train;
+	}
 
 	// ************************************************************
 	// Methods
-
-	/**
-	 *
-	 */
-	public void setTrain(DataSet train) {
-		this.train = train;
-	}
 
 	/**
 	 *
@@ -62,7 +58,7 @@ public class MoFGBML_Learning implements ConsequentFactory {
 			final Integer CLASSNUM = c;
 			Optional<Double> partSum = null;
 			try {
-				partSum = Parallel.forkJoinPool.submit( () ->
+				partSum = Parallel.learningForkJoinPool.submit( () ->
 					train.getPatterns().parallelStream()
 						// 正解クラスが「CLASS == c」のパターンを抽出
 						.filter(pattern -> pattern.getTrueClass().getClassLabel() == CLASSNUM)
@@ -148,7 +144,7 @@ public class MoFGBML_Learning implements ConsequentFactory {
 	}
 
 	public static class MoFGBML_LearningBuilder {
-		private DataSet train;
+		protected DataSet train;
 
 		MoFGBML_LearningBuilder() {}
 
@@ -157,29 +153,11 @@ public class MoFGBML_Learning implements ConsequentFactory {
 			return this;
 		}
 
-		public void checkException() {
-			try {
-				if(this.train == null) throw new NullPointerException("[train] is not set.");
-			}
-			catch(NullPointerException e) {
-				System.out.println(this.getClass().toString());
-				System.out.println(e);
-				e.printStackTrace();
-			}
-		}
-
-		public void setFactory(MoFGBML_Learning factory) {
-			factory.setTrain(train);
-		}
-
 		/**
 		 * @param train : DataSet
 		 */
 		public MoFGBML_Learning build() {
-			checkException();
-			MoFGBML_Learning factory = new MoFGBML_Learning();
-			setFactory(factory);
-			return factory;
+			return new MoFGBML_Learning(train);
 		}
 	}
 }

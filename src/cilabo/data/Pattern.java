@@ -97,18 +97,13 @@ public class Pattern {
 			return this;
 		}
 
+		/**
+		 * @param id : int
+		 * @param inputVector : InputVector
+		 * @param trueClass : ClassLabel
+		 */
 		public Pattern build() {
-			try {
-				if(this.id == -1) throw new IllegalStateException("[id] is not initialized.");
-				if(this.inputVector == null) throw new NullPointerException("[inputVector] is not initialized.");
-				if(this.trueClass == null) throw new NullPointerException("[trueClass] is not initialized.");
-
-				return new Pattern(id, inputVector, trueClass);
-			}
-			catch (IllegalStateException | NullPointerException e) {
-				System.out.println(e);
-				return null;
-			}
+			return new Pattern(id, inputVector, trueClass);
 		}
 	}
 

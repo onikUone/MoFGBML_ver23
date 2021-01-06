@@ -11,7 +11,6 @@ public class InputVector {
 
 	// ************************************************************
 	// Constructor
-
 	public InputVector(int dimension) {
 		this.inputVector = new double[dimension];
 	}

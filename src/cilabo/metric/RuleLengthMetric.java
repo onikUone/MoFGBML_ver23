@@ -23,6 +23,7 @@ public class RuleLengthMetric implements Metric {
 			return metric(classifier);
 		}
 		else {
+			(new IllegalArgumentException()).printStackTrace();
 			return null;
 		}
 	}

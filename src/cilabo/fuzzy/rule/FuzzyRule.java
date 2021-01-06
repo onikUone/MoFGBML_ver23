@@ -69,17 +69,7 @@ public class FuzzyRule implements Rule {
 		 * @param consequent : Consequent
 		 */
 		public FuzzyRule build() {
-			try {
-				if(this.antecedent == null) throw new NullPointerException("[antecedent] is not initialized.");
-				if(this.consequent == null) throw new NullPointerException("[consequent] is not initialized.");
-
-				return new FuzzyRule(antecedent, consequent);
-			}
-			catch (NullPointerException e) {
-				System.out.println(e);
-				return null;
-			}
-
+			return new FuzzyRule(antecedent, consequent);
 		}
 	}
 }

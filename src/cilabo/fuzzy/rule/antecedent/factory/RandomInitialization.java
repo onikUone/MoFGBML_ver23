@@ -21,20 +21,14 @@ public class RandomInitialization implements AntecedentFactory {
 
 	// ************************************************************
 	// Constructor
+	public RandomInitialization(int seed, Knowledge knowledge, DataSet train) {
+		this.uniqueRnd = new MersenneTwisterFast(seed);
+		this.knowledge = knowledge;
+		this.train = train;
+	}
 
 	// ************************************************************
 	// Methods
-	public void setSeed(int seed) {
-		this.uniqueRnd = new MersenneTwisterFast(seed);
-	}
-
-	public void setKnowledge(Knowledge knowledge) {
-		this.knowledge = knowledge;
-	}
-
-	public void setTrain(DataSet train) {
-		this.train = train;
-	}
 
 	@Override
 	public Antecedent create() {
@@ -104,37 +98,13 @@ public class RandomInitialization implements AntecedentFactory {
 			return this;
 		}
 
-		public void checkException() {
-			try {
-				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not set.");
-				if(this.train == null) throw new NullPointerException("[train] is not set.");
-			}
-			catch(NullPointerException e) {
-				System.out.println(e);
-			}
-		}
-
-		/**
-		 * @param seed : int
-		 * @param knowledge : Knowledge
-		 * @param train : DataSet
-		 */
-		public void setFactory(RandomInitialization factory) {
-			factory.setSeed(seed);
-			factory.setKnowledge(knowledge);
-			factory.setTrain(train);
-		}
-
 		/**
 		 * @param seed : int
 		 * @param knowledge : Knowledge
 		 * @param train : DataSet
 		 */
 		public RandomInitialization build() {
-			checkException();
-			RandomInitialization factory = new RandomInitialization();
-			setFactory(factory);
-			return factory;
+			return new RandomInitialization(seed, knowledge, train);
 		}
 	}
 

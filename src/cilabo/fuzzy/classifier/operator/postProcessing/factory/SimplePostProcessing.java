@@ -22,6 +22,7 @@ public class SimplePostProcessing implements PostProcessing {
 		}
 		catch(IllegalArgumentException e) {
 			System.out.println(e);
+			e.printStackTrace();
 			return null;
 		}
 

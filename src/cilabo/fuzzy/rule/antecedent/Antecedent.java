@@ -23,9 +23,11 @@ public class Antecedent {
 		this.antecedentFuzzySets = new FuzzyTermType[antecedentIndex.length];
 		for(int i = 0; i < antecedentIndex.length; i++) {
 			if(antecedentIndex[i] < 0) {
+				// Categorical
 				antecedentFuzzySets[i] = null;
 			}
 			else {
+				// Categorical
 				antecedentFuzzySets[i] = knowledge.getFuzzySet(i, antecedentIndex[i]);
 			}
 		}
@@ -100,6 +102,7 @@ public class Antecedent {
 		return str;
 	}
 
+
 	public static AntecedentBuilder builder() {
 		return new AntecedentBuilder();
 	}
@@ -125,16 +128,7 @@ public class Antecedent {
 		 * @param antecedentIndex : int[]
 		 */
 		public Antecedent build() {
-			try {
-				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not initialized.");
-				if(this.antecedentIndex == null) throw new NullPointerException("[antecedentIndex] is not initialized.");
-
-				return new Antecedent(knowledge, antecedentIndex);
-			}
-			catch(NullPointerException e) {
-				System.out.println(e);
-				return null;
-			}
+			return new Antecedent(knowledge, antecedentIndex);
 		}
 	}
 

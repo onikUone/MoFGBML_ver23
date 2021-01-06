@@ -28,32 +28,33 @@ public class Output {
 	 * String用
 	 * @param fileName
 	 * @param str : String
+	 * @param append : boolean : true=append, false=rewrite
 	 */
-	public static void writeln(String fileName, String str) {
+	public static void writeln(String fileName, String str, boolean append) {
 		String[] array = new String[] {str};
-		writeln(fileName, array);
+		writeln(fileName, array, append);
 	}
 
 	/**
 	 * ArrayList用
 	 * @param fileName
 	 * @param strs : ArrayList{@literal <String>}
+	 * @param append : boolean : true=append, false=rewrite
 	 */
-	public static void writeln(String fileName, ArrayList<String> strs) {
+	public static void writeln(String fileName, ArrayList<String> strs, boolean append) {
 		String[] array = (String[]) strs.toArray(new String[0]);
-		writeln(fileName, array);
+		writeln(fileName, array, append);
 	}
 
 	/**
 	 * 配列用
 	 * @param fileName
 	 * @param array : String[]
+	 * @param append : boolean : true=append, false=rewrite
 	 */
-	public static void writeln(String fileName, String[] array){
-
+	public static void writeln(String fileName, String[] array, boolean append){
 		try {
-//			FileWriter fw = new FileWriter(fileName, true);
-			FileWriter fw = new FileWriter(fileName, false);
+			FileWriter fw = new FileWriter(fileName, append);
 			PrintWriter pw = new PrintWriter( new BufferedWriter(fw) );
 			for(int i=0; i<array.length; i++){
 				 pw.println(array[i]);

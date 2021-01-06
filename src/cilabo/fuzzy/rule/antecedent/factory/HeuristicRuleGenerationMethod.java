@@ -1,8 +1,5 @@
 package cilabo.fuzzy.rule.antecedent.factory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import cilabo.data.DataSet;
 import cilabo.data.Pattern;
 import cilabo.fuzzy.knowledge.Knowledge;
@@ -23,11 +20,20 @@ public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 	/**  */
 	DataSet train;
 
-	/** Internal parmeter */
-	ArrayList<Integer> samplingIndex;
+	/** */
+	Integer[] samplingIndex;
+
+	/** Internal parameter */
+	int head = 0;
 
 	// ************************************************************
 	// Constructor
+	public HeuristicRuleGenerationMethod(int seed, Knowledge knowledge, DataSet train, Integer[] samplingIndex) {
+		this.uniqueRnd = new MersenneTwisterFast(seed);
+		this.knowledge = knowledge;
+		this.train = train;
+		this.samplingIndex = samplingIndex;
+	}
 
 	// ************************************************************
 	// Methods
@@ -37,12 +43,11 @@ public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 	 */
 	@Override
 	public Antecedent create() {
-		if(samplingIndex.size() == 0) {
-			return null;
-		}
+		if(head > samplingIndex.length) return null;
 
 		int dimension = train.getNdim();
-		Pattern pattern = train.getPattern(samplingIndex.remove(0));
+		Pattern pattern = train.getPattern(samplingIndex[head]);
+		head++;
 		double[] vector = pattern.getInputVector().getVector();
 
 		double dcRate;
@@ -94,34 +99,6 @@ public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 				.build();
 	}
 
-	/**
-	 *
-	 */
-	public void setSeed(int seed) {
-		this.uniqueRnd = new MersenneTwisterFast(seed);
-	}
-
-	/**
-	 *
-	 */
-	public void setKnowledge(Knowledge knowledge) {
-		this.knowledge = knowledge;
-	}
-
-	/**
-	 * Shallow copy
-	 */
-	public void setTrain(DataSet train) {
-		this.train = train;
-	}
-
-	/**
-	 * Shallow copy
-	 */
-	public void setSamplingIndex(Integer[] samplingIndex) {
-		this.samplingIndex = new ArrayList<Integer>();
-		this.samplingIndex.addAll(Arrays.asList(samplingIndex));
-	}
 
 	public static HeuristicRuleGenerationMethod.HeuristicRuleGenerationMethodBuilder builder() {
 		return new HeuristicRuleGenerationMethodBuilder();
@@ -155,30 +132,6 @@ public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 			return this;
 		}
 
-		public void checkException() {
-			try {
-				if(this.knowledge == null) throw new NullPointerException("[knowledge] is not set.");
-				if(this.train == null) throw new NullPointerException("[train] is not set.");
-				if(this.samplingIndex == null) throw new NullPointerException("[samplingIndex] is not set.");
-			}
-			catch (NullPointerException e) {
-				System.out.println(e);
-			}
-		}
-
-		/**
-		 * @param seed : int
-		 * @param knowledge : Knowledge
-		 * @param train : DataSet
-		 * @param samplingIndex : Integer[]
-		 */
-		public void setFactory(HeuristicRuleGenerationMethod factory) {
-			factory.setSeed(seed);
-			factory.setKnowledge(knowledge);
-			factory.setTrain(train);
-			factory.setSamplingIndex(samplingIndex);
-		}
-
 		/**
 		 * @param seed : int
 		 * @param knowledge : Knowledge
@@ -186,10 +139,7 @@ public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 		 * @param samplingIndex : Integer[]
 		 */
 		public HeuristicRuleGenerationMethod build() {
-			checkException();
-			HeuristicRuleGenerationMethod factory = new HeuristicRuleGenerationMethod();
-			setFactory(factory);
-			return factory;
+			return new HeuristicRuleGenerationMethod(seed, knowledge, train, samplingIndex);
 		}
 	}
 }
