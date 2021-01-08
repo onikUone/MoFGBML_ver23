@@ -34,7 +34,7 @@ public class GeneralFunctions {
 	 * @param vector2 : double[] :
 	 * @return double : distance between vector1 and vector2.
 	 */
-	public static double distanceVectors(double[] vector1, double[] vector2) {
+	public static double distanceVectors(Double[] vector1, Double[] vector2) {
 		if(vector1.length != vector2.length) {
 			return -1;
 		}
@@ -50,7 +50,7 @@ public class GeneralFunctions {
 	 * @param vector : double[]
 	 * @return double : norm of vector
 	 */
-	public static double vectorNorm(double[] vector) {
+	public static double vectorNorm(Double[] vector) {
 		double norm = 0.0;
 		double sum = 0.0;
 		for(int i = 0; i < vector.length; i++) {
@@ -66,11 +66,11 @@ public class GeneralFunctions {
 	 * @param b : double[]
 	 * @return double : Inner Product
 	 */
-	public static double innerProduct(double[] a, double[] b) {
+	public static double innerProduct(Double[] a, Double[] b) {
 		if(a.length != b.length) {
 			return -1;
 		}
-		double[] ab = new double[a.length];
+		Double[] ab = new Double[a.length];
 		for(int i = 0; i < a.length; i++) {
 			ab[i] = a[i] * b[i];
 		}
@@ -78,49 +78,19 @@ public class GeneralFunctions {
 	}
 
 	/**
-	 * <h1>Calculate Recall for Multi-Label Classification</h1>
-	 * @param classified : double[]
-	 * @param answer : double[]
-	 * @return double : Recall
+	 * <h1>Hamming Distance</h1>
+	 * @param a : Integer[] :
+	 * @param b : Integer[] :
+	 * @return double :
 	 */
-	public static double RecallMetric(int[] classified, int[] answer) {
-		double correctAssociate = 0.0;
-		double answerAssociate = 0.0;
-		for(int i = 0; i < classified.length; i++) {
-			if(classified[i] == 1 && answer[i] == 1) {
-				correctAssociate++;
-			}
-			if(answer[i] == 1) {
-				answerAssociate++;
+	public static double HammingDistance(Integer[] a, Integer[] b) {
+		double distance = 0.0;
+		for(int i = 0; i < a.length; i++) {
+			if(a[i] != b[i]) {
+				distance++;
 			}
 		}
-		if(answerAssociate == 0) {
-			return 0;
-		}
-		return correctAssociate / answerAssociate;
-	}
-
-	/**
-	 * <h1>Calculate Precision for Multi-Label Classification</h1>
-	 * @param classified : double[]
-	 * @param answer : double[]
-	 * @return double : Precision
-	 */
-	public static double PrecisionMetric(int[] classified, int[] answer) {
-		double correctAssociate = 0.0;
-		double classifiedAssociate = 0.0;
-		for(int i = 0; i < classified.length; i++) {
-			if(classified[i] == 1 && answer[i] == 1) {
-				correctAssociate++;
-			}
-			if(classified[i] == 1) {
-				classifiedAssociate++;
-			}
-		}
-		if(classifiedAssociate == 0) {
-			return 0;
-		}
-		return correctAssociate / classifiedAssociate;
+		return distance;
 	}
 
 	/**

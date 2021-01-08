@@ -2,7 +2,7 @@ package cilabo.metric;
 
 import cilabo.fuzzy.classifier.FuzzyClassifier;
 
-public class RuleNumMetric implements Metric {
+public class RuleLength implements Metric {
 	// ************************************************************
 	// Fields
 
@@ -29,6 +29,6 @@ public class RuleNumMetric implements Metric {
 	}
 
 	public Integer metric(FuzzyClassifier classifier) {
-		return classifier.getRuleNum();
+		return classifier.getRuleLength();
 	}
 }

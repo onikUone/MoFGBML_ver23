@@ -41,7 +41,7 @@ public class SingleWinnerRuleSelection implements Classification {
 			else if(value == max) {
 				FuzzyRule winnerRule = ruleSet.get(winner);
 				// "membership*CF"が同値 かつ 結論部クラスが異なる
-				if(rule.getConsequent().getClassLabel().toString() != winnerRule.getConsequent().getClassLabel().toString()) {
+				if(!rule.getConsequent().getClassLabel().toString().equals(winnerRule.getConsequent().getClassLabel().toString())) {
 					canClassify = false;
 				}
 			}

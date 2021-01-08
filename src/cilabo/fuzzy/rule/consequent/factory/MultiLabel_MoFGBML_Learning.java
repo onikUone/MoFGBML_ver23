@@ -8,7 +8,7 @@ import cilabo.data.DataSet;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.fuzzy.rule.consequent.Consequent;
 import cilabo.fuzzy.rule.consequent.ConsequentFactory;
-import cilabo.fuzzy.rule.consequent.RuleWeight;
+import cilabo.fuzzy.rule.consequent.RuleWeightVector;
 import cilabo.utility.Parallel;
 
 public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements ConsequentFactory {
@@ -32,7 +32,7 @@ public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements Con
 		double[][] confidence = this.calcConfidenceMulti(antecedent);
 
 		ClassLabel classLabel = this.calcClassLabel(confidence);
-		RuleWeight ruleWeight = this.calcRuleWeight(classLabel, confidence);
+		RuleWeightVector ruleWeight = this.calcRuleWeightVector(classLabel, confidence);
 
 		Consequent consequent = Consequent.builder()
 								.consequentClass(classLabel)
@@ -110,17 +110,17 @@ public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements Con
 	/**
 	 *
 	 */
-	public RuleWeight calcRuleWeight(ClassLabel classLabel, double[][] confidence) {
-		RuleWeight ruleWeight = new RuleWeight();
+	public RuleWeightVector calcRuleWeightVector(ClassLabel classLabel, double[][] confidence) {
+		RuleWeightVector ruleWeightVector = new RuleWeightVector();
 		for(int c = 0; c < confidence.length; c++) {
 			if(classLabel.getClassVector()[c] == -1) {
-				ruleWeight.addRuleWeight(0.0);
+				ruleWeightVector.addRuleWeight(0.0);
 			}
 			else {
-				ruleWeight.addRuleWeight(Math.abs(confidence[c][0] - confidence[c][1]));
+				ruleWeightVector.addRuleWeight(Math.abs(confidence[c][0] - confidence[c][1]));
 			}
 		}
-		return ruleWeight;
+		return ruleWeightVector;
 	}
 
 	public static MultiLabel_MoFGBML_Learning.MultiLabel_MoFGBML_LearningBuilder builder() {

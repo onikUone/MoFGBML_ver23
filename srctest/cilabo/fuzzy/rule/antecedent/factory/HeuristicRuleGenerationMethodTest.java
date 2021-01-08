@@ -39,10 +39,8 @@ public class HeuristicRuleGenerationMethodTest {
 												.build();
 
 		Antecedent antecedent = factory.create();
-
 		String actual = " 7,  8,  6, 10";
 		String expected = antecedent.toString();
-
 		assertEquals(expected, actual);
 
 		antecedent = factory.create();

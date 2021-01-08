@@ -63,7 +63,7 @@ public class SimplePostProcessing implements PostProcessing {
 				if(!sameList.contains(j)) {
 					Antecedent origin = classifier.getFuzzyRule(i).getAntecedent();
 					Antecedent object = classifier.getFuzzyRule(j).getAntecedent();
-					if(origin.toString() == object.toString()) {
+					if(origin.toString().equals( object.toString() )) {
 						sameList.add(i);
 					}
 				}

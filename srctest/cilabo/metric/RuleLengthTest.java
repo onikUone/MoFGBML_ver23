@@ -7,11 +7,11 @@ import java.io.File;
 import org.junit.Test;
 
 import cilabo.data.DataSet;
+import cilabo.fuzzy.StaticFuzzyClassifierForTest;
 import cilabo.fuzzy.classifier.FuzzyClassifier;
-import cilabo.fuzzy.classifier.factory.FuzzyClassifierFactoryTest;
 import cilabo.utility.Input;
 
-public class RuleLengthMetricTest {
+public class RuleLengthTest {
 	@Test
 	public void testMetric() {
 		String sep = File.separator;
@@ -19,9 +19,9 @@ public class RuleLengthMetricTest {
 		DataSet train = new DataSet();
 		Input.inputSingleLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = FuzzyClassifierFactoryTest.makeClassifier(train);
+		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
-		Metric ruleLength = new RuleLengthMetric();
+		Metric ruleLength = new RuleLength();
 
 		int expected = (int)ruleLength.metric(classifier);
 

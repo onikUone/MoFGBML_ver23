@@ -1,20 +1,20 @@
-package cilabo.metric;
+package cilabo.metric.multilabel;
 
-import cilabo.data.ClassLabel;
 import cilabo.data.DataSet;
 import cilabo.data.InputVector;
 import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.metric.Metric;
+import cilabo.utility.GeneralFunctions;
 
-public class ErrorRateMetric implements Metric {
+public class HammingLoss implements Metric {
 	// ************************************************************
 	// Fields
-
 	/**  */
 	DataSet dataset;
 
 	// ************************************************************
 	// Constructor
-	public ErrorRateMetric(DataSet dataset) {
+	public HammingLoss(DataSet dataset) {
 		this.dataset = dataset;
 	}
 
@@ -23,7 +23,7 @@ public class ErrorRateMetric implements Metric {
 
 	/**
 	 * @param classifier : FuzzyClassifier
-	 * @return Double
+	 * @param Double
 	 */
 	@Override
 	public Double metric(Object... objects) {
@@ -38,26 +38,27 @@ public class ErrorRateMetric implements Metric {
 	}
 
 	public Double metric(FuzzyClassifier classifier) {
-		double size = this.dataset.getDataSize();
+		double size = dataset.getDataSize();	// Number of instances;
+		double noClass = dataset.getCnum();		// Number of classes;
 
-		double error = 0;
+		double HammingLoss = 0;
 		for(int p = 0; p < size; p++) {
 			InputVector vector = dataset.getPattern(p).getInputVector();
-			ClassLabel trueClass = dataset.getPattern(p).getTrueClass();
+			Integer[] trueClass = dataset.getPattern(p).getTrueClass().getClassVector();
 
-			ClassLabel classifiedClass = classifier.classify(vector).getConsequent().getClassLabel();
+			Integer[] classifiedClass = classifier.classify(vector)
+													.getConsequent().getClassLabel()
+													.getClassVector();
 
-			if( !trueClass.toString().equals( classifiedClass.toString() ) ) {
-				error += 1;
-			}
+			double distance = GeneralFunctions.HammingDistance(trueClass, classifiedClass);
+			HammingLoss += distance / noClass;
 		}
-		return 100.0 * error/size;
+
+		return 100.0 * HammingLoss/size;
 	}
 
 	public void setDataSet(DataSet dataset) {
 		this.dataset = dataset;
 	}
-
-
 
 }

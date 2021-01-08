@@ -7,11 +7,11 @@ import java.io.File;
 import org.junit.Test;
 
 import cilabo.data.DataSet;
+import cilabo.fuzzy.StaticFuzzyClassifierForTest;
 import cilabo.fuzzy.classifier.FuzzyClassifier;
-import cilabo.fuzzy.classifier.factory.FuzzyClassifierFactoryTest;
 import cilabo.utility.Input;
 
-public class ErrorRateMetricTest {
+public class ErrorRateTest {
 	@Test
 	public void testMetric1() {
 		String sep = File.separator;
@@ -19,9 +19,9 @@ public class ErrorRateMetricTest {
 		DataSet train = new DataSet();
 		Input.inputSingleLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = FuzzyClassifierFactoryTest.makeClassifier(train);
+		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
-		Metric errorRate = new ErrorRateMetric(train);
+		Metric errorRate = new ErrorRate(train);
 
 		double expected = (double)errorRate.metric(classifier);
 
@@ -36,9 +36,9 @@ public class ErrorRateMetricTest {
 		DataSet train = new DataSet();
 		Input.inputSingleLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = FuzzyClassifierFactoryTest.makeClassifier(train);
+		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
-		Metric errorRate = new ErrorRateMetric(train);
+		Metric errorRate = new ErrorRate(train);
 
 		double expected = (double)errorRate.metric(classifier);
 
