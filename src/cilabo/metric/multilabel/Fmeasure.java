@@ -8,35 +8,44 @@ import cilabo.metric.Metric;
 public class Fmeasure implements Metric {
 	// ************************************************************
 	// Fields
-	/**  */
-	DataSet dataset;
 
 	// ************************************************************
 	// Constructor
-	public Fmeasure(DataSet dataset) {
-		this.dataset = dataset;
-	}
 
 	// ************************************************************
 	// Methods
 
 	/**
 	 * @param classifier : FuzzyClassifier
-	 * @param Double
+	 * @param dataset : DataSet
+	 * @return Double
 	 */
 	@Override
 	public Double metric(Object... objects) {
-		if(objects[0].getClass() == FuzzyClassifier.class) {
-			FuzzyClassifier classifier = (FuzzyClassifier)objects[0];
-			return metric(classifier);
+		FuzzyClassifier classifier = null;
+		DataSet dataset = null;
+		for(Object object : objects) {
+			if(object.getClass() == FuzzyClassifier.class) {
+				classifier = (FuzzyClassifier)object;
+			}
+			else if(object.getClass() == DataSet.class) {
+				dataset = (DataSet)object;
+			}
+			else {
+				(new IllegalArgumentException()).printStackTrace();
+				return null;
+			}
+		}
+
+		if(classifier != null && dataset != null) {
+			return metric(classifier, dataset);
 		}
 		else {
-			(new IllegalArgumentException()).printStackTrace();
 			return null;
 		}
 	}
 
-	public Double metric(FuzzyClassifier classifier) {
+	public Double metric(FuzzyClassifier classifier, DataSet dataset) {
 		double size = dataset.getDataSize();
 
 		double recall = 0.0;
@@ -61,10 +70,6 @@ public class Fmeasure implements Metric {
 			Fmeasure = (2.0 * recall * precision) / (recall + precision);
 		}
 		return 100.0 * Fmeasure;
-	}
-
-	public void setDataSet(DataSet dataset) {
-		this.dataset = dataset;
 	}
 
 }

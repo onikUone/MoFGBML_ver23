@@ -51,5 +51,8 @@ public class HeuristicRuleGenerationMethodTest {
 		antecedent = factory.create();
 		assertEquals(null, antecedent);
 
+		antecedent = factory.create();
+		assertEquals(null, antecedent);
+
 	}
 }

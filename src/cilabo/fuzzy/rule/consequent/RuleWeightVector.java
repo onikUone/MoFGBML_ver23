@@ -29,6 +29,13 @@ public class RuleWeightVector extends RuleWeight {
 	}
 
 	/**
+	 * @param index
+	 */
+	public Double getRuleWeightForClass(int index) {
+		return this.ruleWeight.get(index);
+	}
+
+	/**
 	 *
 	 */
 	@Override

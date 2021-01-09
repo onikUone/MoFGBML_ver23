@@ -10,35 +10,45 @@ public class ErrorRate implements Metric {
 	// Fields
 
 	/**  */
-	DataSet dataset;
 
 	// ************************************************************
 	// Constructor
-	public ErrorRate(DataSet dataset) {
-		this.dataset = dataset;
-	}
 
 	// ************************************************************
 	// Methods
 
 	/**
 	 * @param classifier : FuzzyClassifier
+	 * @param dataset : DataSet
 	 * @return Double
 	 */
 	@Override
 	public Double metric(Object... objects) {
-		if(objects[0].getClass() == FuzzyClassifier.class) {
-			FuzzyClassifier classifier = (FuzzyClassifier)objects[0];
-			return metric(classifier);
+		FuzzyClassifier classifier = null;
+		DataSet dataset = null;
+		for(Object object : objects) {
+			if(object.getClass() == FuzzyClassifier.class) {
+				classifier = (FuzzyClassifier)object;
+			}
+			else if(object.getClass() == DataSet.class) {
+				dataset = (DataSet)object;
+			}
+			else {
+				(new IllegalArgumentException()).printStackTrace();
+				return null;
+			}
+		}
+
+		if(classifier != null && dataset != null) {
+			return metric(classifier, dataset);
 		}
 		else {
-			(new IllegalArgumentException()).printStackTrace();
 			return null;
 		}
 	}
 
-	public Double metric(FuzzyClassifier classifier) {
-		double size = this.dataset.getDataSize();
+	public Double metric(FuzzyClassifier classifier, DataSet dataset) {
+		double size = dataset.getDataSize();
 
 		double error = 0;
 		for(int p = 0; p < size; p++) {
@@ -53,11 +63,6 @@ public class ErrorRate implements Metric {
 		}
 		return 100.0 * error/size;
 	}
-
-	public void setDataSet(DataSet dataset) {
-		this.dataset = dataset;
-	}
-
 
 
 }

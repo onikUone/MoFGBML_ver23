@@ -41,5 +41,8 @@ public class AllCombinationAntecedentFactoryTest {
 			Antecedent antecedent = factory.create();
 			assertEquals(antecedent.toString(), actual[i]);
 		}
+
+		assertEquals(factory.create(), null);
+		assertEquals(factory.create(), null);
 	}
 }

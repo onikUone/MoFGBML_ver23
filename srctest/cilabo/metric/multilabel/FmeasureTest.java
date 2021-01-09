@@ -23,19 +23,19 @@ public class FmeasureTest {
 		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeMultiLabelClassifier(train);
 
 		// Fmeasure
-		Metric metric = new Fmeasure(train);
-		double expected = (double)metric.metric(classifier);
+		Metric metric = new Fmeasure();
+		double expected = (double)metric.metric(classifier, train);
 		double diff = 0.006;
 		assertEquals(expected, 97.09401709401708, diff);
 
 		// Precision
-		metric = new Precision(train);
-		expected = (double)metric.metric(classifier);
+		metric = new Precision();
+		expected = (double)metric.metric(classifier, train);
 		assertEquals(expected, 97.77777777777777, diff);
 
 		// Recall
-		metric = new Recall(train);
-		expected = (double)metric.metric(classifier);
+		metric = new Recall();
+		expected = (double)metric.metric(classifier, train);
 		assertEquals(expected, 96.41975308641972, diff);
 	}
 

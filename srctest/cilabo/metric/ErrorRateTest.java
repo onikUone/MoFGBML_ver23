@@ -21,9 +21,9 @@ public class ErrorRateTest {
 
 		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
-		Metric errorRate = new ErrorRate(train);
+		Metric errorRate = new ErrorRate();
 
-		double expected = (double)errorRate.metric(classifier);
+		double expected = (double)errorRate.metric(classifier, train);
 
 		double diff = 0.006;
 		assertEquals(expected, 100 - 91.67, diff);
@@ -38,9 +38,9 @@ public class ErrorRateTest {
 
 		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
-		Metric errorRate = new ErrorRate(train);
+		Metric errorRate = new ErrorRate();
 
-		double expected = (double)errorRate.metric(classifier);
+		double expected = (double)errorRate.metric(classifier, train);
 
 		double diff = 0.006;
 		assertEquals(expected, 100 - 90.00, diff);

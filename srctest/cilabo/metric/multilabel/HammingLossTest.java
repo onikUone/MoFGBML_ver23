@@ -22,9 +22,9 @@ public class HammingLossTest {
 
 		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeMultiLabelClassifier(train);
 
-		Metric errorRate = new HammingLoss(train);
+		Metric errorRate = new HammingLoss();
 
-		double expected = (double)errorRate.metric(classifier);
+		double expected = (double)errorRate.metric(classifier, train);
 		double diff = 0.006;
 		assertEquals(expected, 3.950617283950618, diff);
 	}

@@ -43,7 +43,7 @@ public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 	 */
 	@Override
 	public Antecedent create() {
-		if(head > samplingIndex.length) return null;
+		if(head >= samplingIndex.length) return null;
 
 		int dimension = train.getNdim();
 		Pattern pattern = train.getPattern(samplingIndex[head]);

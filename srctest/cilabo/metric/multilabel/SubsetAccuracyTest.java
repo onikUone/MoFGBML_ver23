@@ -22,9 +22,9 @@ public class SubsetAccuracyTest {
 
 		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeMultiLabelClassifier(train);
 
-		Metric errorRate = new SubsetAccuracy(train);
+		Metric errorRate = new SubsetAccuracy();
 
-		double expected = (double)errorRate.metric(classifier);
+		double expected = (double)errorRate.metric(classifier, train);
 		double diff = 0.006;
 		assertEquals(expected, 88.51851851851852, diff);
 	}

@@ -65,7 +65,7 @@ public class AllCombinationAntecedentFactory implements AntecedentFactory {
 	 */
 	@Override
 	public Antecedent create() {
-		if(head > antecedents.length) return null;
+		if(head >= antecedents.length) return null;
 
 		int[] antecedentIndex = this.antecedents[head];
 		head++;
