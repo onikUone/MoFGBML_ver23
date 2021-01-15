@@ -28,10 +28,30 @@ public class FuzzyRule implements Rule {
 	// ************************************************************
 	// Methods
 
+	/**
+	 *
+	 */
+	@Override
+	public FuzzyRule deepcopy() {
+		return new FuzzyRule(this.antecedent.deepcopy(), this.consequent.deepcopy());
+	}
+
+	@Override
+	public void setAntecedent(Antecedent antecedent) {
+		this.antecedent = antecedent;
+	}
+
+	@Override
 	public Antecedent getAntecedent() {
 		return this.antecedent;
 	}
 
+	@Override
+	public void setConsequent(Consequent consequent) {
+		this.consequent = consequent;
+	}
+
+	@Override
 	public Consequent getConsequent() {
 		return this.consequent;
 	}

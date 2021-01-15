@@ -71,6 +71,10 @@ public class RandomInitialization implements AntecedentFactory {
 						.build();
 	}
 
+	public Knowledge getKnowledge() {
+		return this.knowledge;
+	}
+
 
 	public static RandomInitialization.RandomInitializationBuilder builder(){
 		return new RandomInitializationBuilder();

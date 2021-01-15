@@ -1,5 +1,7 @@
 package cilabo.fuzzy.rule.antecedent;
 
+import java.util.Arrays;
+
 import cilabo.fuzzy.knowledge.Knowledge;
 import jfml.term.FuzzyTermType;
 
@@ -12,6 +14,16 @@ public class Antecedent {
 
 	// ************************************************************
 	// Constructor
+
+	/**
+	 * private constructor for deepcopy method
+	 * @param antecedentIndex
+	 * @param antecedentFuzzySets
+	 */
+	private Antecedent(int[] antecedentIndex, FuzzyTermType[] antecedentFuzzySets) {
+		this.antecedentIndex = antecedentIndex;
+		this.antecedentFuzzySets = antecedentFuzzySets;
+	}
 
 	/**
 	 *
@@ -35,6 +47,14 @@ public class Antecedent {
 
 	// ************************************************************
 	// Methods
+
+	/**
+	 *
+	 */
+	public Antecedent deepcopy() {
+		int[] antecedentIndex = Arrays.copyOf(this.antecedentIndex, this.antecedentIndex.length);
+		return new Antecedent(antecedentIndex, this.antecedentFuzzySets);
+	}
 
 	/**
 	 *

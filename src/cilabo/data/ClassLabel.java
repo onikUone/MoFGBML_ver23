@@ -11,8 +11,19 @@ public class ClassLabel {
 	// Constructor
 	public ClassLabel() {}
 
+	private ClassLabel(ArrayList<Integer> classLabel) {
+		this.classLabel.addAll(classLabel);
+	}
+
 	// ************************************************************
 	// Methods
+
+	/**
+	 *
+	 */
+	public ClassLabel deepcopy() {
+		return new ClassLabel(this.classLabel);
+	}
 
 	/**
 	 *

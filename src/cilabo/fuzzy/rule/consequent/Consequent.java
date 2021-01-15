@@ -31,6 +31,13 @@ public class Consequent {
 	/**
 	 *
 	 */
+	public Consequent deepcopy() {
+		return new Consequent(this.consequentClass.deepcopy(), this.ruleWeight.deepcopy());
+	}
+
+	/**
+	 *
+	 */
 	public ClassLabel getClassLabel() {
 		return this.consequentClass;
 	}

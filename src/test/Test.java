@@ -1,6 +1,7 @@
 package test;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.classifier.ClassifierFactory;
@@ -27,7 +28,21 @@ public class Test {
 	public static void main(String[] args) {
 //		checkLineSeparator();
 
-		checkClassifierToString();
+//		checkClassifierToString();
+
+		checkAddAll();
+	}
+
+	public static void checkAddAll() {
+		ArrayList<Double> origin = new ArrayList<>();
+		origin.add(1.0);
+		origin.add(2.0);
+
+
+		ArrayList<Double> newInstance = new ArrayList<>();
+		newInstance.addAll(origin);
+
+		origin.set(0, 2.0);
 	}
 
 	public static void checkClassifierToString() {

@@ -1,5 +1,7 @@
 package cilabo.fuzzy.rule.consequent;
 
+import java.util.ArrayList;
+
 public class RuleWeightVector extends RuleWeight {
 	// ************************************************************
 	// Fields
@@ -7,9 +9,23 @@ public class RuleWeightVector extends RuleWeight {
 
 	// ************************************************************
 	// Constructor
+	public RuleWeightVector() {}
+
+	private RuleWeightVector(ArrayList<Double> ruleWeight, Double CFmean) {
+		super(ruleWeight);
+		this.CFmean = CFmean;
+	}
 
 	// ************************************************************
 	// Methods
+
+	/**
+	 *
+	 */
+	@Override
+	public RuleWeightVector deepcopy() {
+		return new RuleWeightVector(this.ruleWeight, this.CFmean);
+	}
 
 	/**
 	 * @return CFmean : Average of rule weight vector

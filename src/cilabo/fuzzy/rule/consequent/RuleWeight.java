@@ -11,8 +11,19 @@ public class RuleWeight {
 	// Constructor
 	public RuleWeight() {}
 
+	protected RuleWeight(ArrayList<Double> ruleWeight) {
+		this.ruleWeight.addAll(ruleWeight);
+	}
+
 	// ************************************************************
 	// Methods
+
+	/**
+	 *
+	 */
+	public RuleWeight deepcopy() {
+		return new RuleWeight(this.ruleWeight);
+	}
 
 	/**
 	 *

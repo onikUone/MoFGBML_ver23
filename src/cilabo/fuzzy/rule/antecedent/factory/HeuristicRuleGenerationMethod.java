@@ -99,6 +99,10 @@ public class HeuristicRuleGenerationMethod implements AntecedentFactory {
 				.build();
 	}
 
+	public Knowledge getKnowledge() {
+		return this.knowledge;
+	}
+
 
 	public static HeuristicRuleGenerationMethod.HeuristicRuleGenerationMethodBuilder builder() {
 		return new HeuristicRuleGenerationMethodBuilder();

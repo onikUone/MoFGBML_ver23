@@ -80,6 +80,10 @@ public class AllCombinationAntecedentFactory implements AntecedentFactory {
 		this.knowledge = knowledge;
 	}
 
+	public Knowledge getKnowledge() {
+		return this.knowledge;
+	}
+
 	public int getRuleNum() {
 		return this.antecedents.length;
 	}
