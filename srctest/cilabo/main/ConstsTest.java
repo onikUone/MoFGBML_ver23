@@ -4,13 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import cilabo.main.Consts;
-
 public class ConstsTest {
 
 	@Test
 	public void testSetConsts() {
 		int UNIX = Consts.UNIX;
+
+		String originConsts = Consts.getString();
 
 		String source = "testConsts";
 		Consts.setConsts(source);
@@ -28,6 +28,9 @@ public class ConstsTest {
 
 		// String
 		assertEquals(Consts.ROOTFOLDER, "testConstsForJUnit");
+
+		String loadedConsts = Consts.getString();
+		assertNotSame(loadedConsts, originConsts);
 	}
 
 

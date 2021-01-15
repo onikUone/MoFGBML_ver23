@@ -1,6 +1,7 @@
 package cilabo.main;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -114,35 +115,20 @@ public class Consts {
 	}
 
 	public static String getString() {
+		Consts consts = new Consts();
 		StringBuilder sb = new StringBuilder();
 		String ln = System.lineSeparator();
+		sb.append("Class: " + consts.getClass().getCanonicalName() + ln);
 		sb.append("Consts: " + ln);
-
-		sb.append("WINDOWS" + " = " + String.valueOf(WINDOWS));
-		sb.append("UNIX" + " = " + String.valueOf(UNIX));
-		sb.append("IS_PROBABILITY_DONT_CARE" + " = " + String.valueOf(IS_PROBABILITY_DONT_CARE));
-		sb.append("ANTECEDENT_LEN" + " = " + String.valueOf(ANTECEDENT_LEN));
-		sb.append("DONT_CARE_RT" + " = " + String.valueOf(DONT_CARE_RT));
-		sb.append("INITIATION_RULE_NUM" + " = " + String.valueOf(INITIATION_RULE_NUM));
-		sb.append("MAX_RULE_NUM" + " = " + String.valueOf(MAX_RULE_NUM));
-		sb.append("MIN_RULE_NUM" + " = " + String.valueOf(MIN_RULE_NUM));
-		sb.append("MICHIGAN_OPE_RT" + " = " + String.valueOf(MICHIGAN_OPE_RT));
-		sb.append("RULE_CHANGE_RT" + " = " + String.valueOf(RULE_CHANGE_RT));
-		sb.append("MICHIGAN_CROSS_RT" + " = " + String.valueOf(MICHIGAN_CROSS_RT));
-		sb.append("PITTSBURGH_CROSS_RT" + " = " + String.valueOf(PITTSBURGH_CROSS_RT));
-		sb.append("PER_SHOW_DOT" + " = " + String.valueOf(PER_SHOW_DOT));
-		sb.append("PER_SHOW_GENERATION_DETAIL" + " = " + String.valueOf(PER_SHOW_GENERATION_DETAIL));
-		sb.append("TRAIN" + " = " + String.valueOf(TRAIN));
-		sb.append("TEST" + " = " + String.valueOf(TEST));
-		sb.append("ROOTFOLDER" + " = " + String.valueOf(ROOTFOLDER));
-		sb.append("RULESET" + " = " + String.valueOf(RULESET));
-		sb.append("INDIVIDUAL" + " = " + String.valueOf(INDIVIDUAL));
-		sb.append("POPULATION" + " = " + String.valueOf(POPULATION));
-		sb.append("OFFSPRING" + " = " + String.valueOf(OFFSPRING));
-		sb.append("SUBDATA" + " = " + String.valueOf(SUBDATA));
-		sb.append("DATA" + " = " + String.valueOf(DATA));
-		sb.append("TIMES" + " = " + String.valueOf(TIMES));
-
+		for(Field field : consts.getClass().getDeclaredFields()) {
+			try {
+				field.setAccessible(true);
+				sb.append( field.getName() + " = " + field.get(consts) + ln );
+			}
+			catch(IllegalAccessException e) {
+				sb.append(field.getName() + " = " + "access denied" + ln);
+			}
+		}
 		return sb.toString();
 	}
 
