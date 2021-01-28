@@ -1,4 +1,4 @@
-package cilabo.gbml.problem.impl;
+package cilabo.gbml.example.michigan;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,13 +25,13 @@ import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.gbml.ga.solution.MichiganSolution;
 import cilabo.gbml.problem.AbstractMichiganGBML_Problem;
 
-public class ExampleMichiganFGBML extends AbstractMichiganGBML_Problem {
+public class ExampleMichiganFGBML_problem extends AbstractMichiganGBML_Problem {
 	// ************************************************************
 	// Fields
 
 	// ************************************************************
 	// Constructor
-	public ExampleMichiganFGBML(int seed, DataSet train) {
+	public ExampleMichiganFGBML_problem(int seed, DataSet train) {
 		setNumberOfVariables(train.getNdim());
 		setNumberOfObjectives(1);
 		setNumberOfConstraints(0);

@@ -1,4 +1,4 @@
-package cilabo.gbml.example;
+package cilabo.gbml.example.michigan;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import cilabo.fuzzy.rule.consequent.Consequent;
 import cilabo.fuzzy.rule.consequent.ConsequentFactory;
 import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.gbml.ga.solution.MichiganSolution;
-import cilabo.gbml.problem.impl.ExampleMichiganFGBML;
 import cilabo.utility.Input;
 
 /**
@@ -79,7 +78,7 @@ public class ExampleMichiganFGBML_main {
 				.build();
 
 		int seed = 0;
-		ExampleMichiganFGBML problem = new ExampleMichiganFGBML(seed, train);
+		ExampleMichiganFGBML_problem problem = new ExampleMichiganFGBML_problem(seed, train);
 		ArrayList<MichiganSolution> population = new ArrayList<>();
 		for(int i = 0; i < 3; i++) {
 			antecedent = antecedents[i];
