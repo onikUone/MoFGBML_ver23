@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.StaticFuzzyClassifierForTest;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.utility.Input;
 
 public class ErrorRateTest {
@@ -19,7 +19,7 @@ public class ErrorRateTest {
 		DataSet train = new DataSet();
 		Input.inputSingleLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
+		RuleBasedClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
 		Metric errorRate = new ErrorRate();
 
@@ -36,7 +36,7 @@ public class ErrorRateTest {
 		DataSet train = new DataSet();
 		Input.inputSingleLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
+		RuleBasedClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
 		Metric errorRate = new ErrorRate();
 

@@ -41,7 +41,7 @@ public class FuzzyRuleTest {
 								.ruleWeight(ruleWeight)
 								.build();
 
-		FuzzyRule rule = FuzzyRule.builder()
+		Rule rule = Rule.builder()
 						.antecedent(antecedent)
 						.consequent(consequent)
 						.build();

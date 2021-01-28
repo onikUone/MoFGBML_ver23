@@ -1,6 +1,6 @@
 package cilabo.metric;
 
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 
 public class RuleNum implements Metric {
 	// ************************************************************
@@ -18,8 +18,8 @@ public class RuleNum implements Metric {
 	 */
 	@Override
 	public Integer metric(Object...objects) {
-		if(objects[0].getClass() == FuzzyClassifier.class) {
-			FuzzyClassifier classifier = (FuzzyClassifier)objects[0];
+		if(objects[0].getClass() == RuleBasedClassifier.class) {
+			RuleBasedClassifier classifier = (RuleBasedClassifier)objects[0];
 			return metric(classifier);
 		}
 		else {
@@ -28,7 +28,7 @@ public class RuleNum implements Metric {
 		}
 	}
 
-	public Integer metric(FuzzyClassifier classifier) {
+	public Integer metric(RuleBasedClassifier classifier) {
 		return classifier.getRuleNum();
 	}
 }

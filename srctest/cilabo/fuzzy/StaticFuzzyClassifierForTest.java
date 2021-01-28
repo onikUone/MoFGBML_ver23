@@ -2,7 +2,7 @@ package cilabo.fuzzy;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.classifier.ClassifierFactory;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.classifier.factory.FuzzyClassifierFactory;
 import cilabo.fuzzy.classifier.operator.classification.Classification;
 import cilabo.fuzzy.classifier.operator.classification.factory.CFmeanClassification;
@@ -24,7 +24,7 @@ import cilabo.fuzzy.rule.consequent.factory.MultiLabel_MoFGBML_Learning;
 
 public class StaticFuzzyClassifierForTest {
 
-	public static FuzzyClassifier makeSingleLabelClassifier(DataSet train) {
+	public static RuleBasedClassifier makeSingleLabelClassifier(DataSet train) {
 		int dimension = train.getNdim();
 		float[][] params = HomoTriangle_3.getParams();
 		Knowledge knowledge = HomoTriangleKnowledgeFactory.builder()
@@ -58,11 +58,11 @@ public class StaticFuzzyClassifierForTest {
 										.ruleNum(ruleNum)
 										.build();
 
-		FuzzyClassifier classifier = (FuzzyClassifier)factory.create();
+		RuleBasedClassifier classifier = (RuleBasedClassifier)factory.create();
 		return classifier;
 	}
 
-	public static FuzzyClassifier makeMultiLabelClassifier(DataSet train) {
+	public static RuleBasedClassifier makeMultiLabelClassifier(DataSet train) {
 		int dimension = train.getNdim();
 		float[][] params = HomoTriangle_2_3_4_5.getParams();
 		Knowledge knowledge = HomoTriangleKnowledgeFactory.builder()
@@ -96,7 +96,7 @@ public class StaticFuzzyClassifierForTest {
 										.ruleNum(ruleNum)
 										.build();
 
-		FuzzyClassifier classifier = (FuzzyClassifier)factory.create();
+		RuleBasedClassifier classifier = (RuleBasedClassifier)factory.create();
 		return classifier;
 	}
 }

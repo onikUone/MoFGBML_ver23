@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import cilabo.fuzzy.classifier.Classifier;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.classifier.operator.postProcessing.PostProcessing;
-import cilabo.fuzzy.rule.FuzzyRule;
+import cilabo.fuzzy.rule.Rule;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 
 public class SimplePostProcessing implements PostProcessing {
@@ -18,7 +18,7 @@ public class SimplePostProcessing implements PostProcessing {
 	@Override
 	public Classifier postProcess(Classifier classifier) {
 		try {
-			if(classifier.getClass() != FuzzyClassifier.class) throw new IllegalArgumentException("argument must be [FuzzyClassifier]");
+			if(classifier.getClass() != RuleBasedClassifier.class) throw new IllegalArgumentException("argument must be [FuzzyClassifier]");
 		}
 		catch(IllegalArgumentException e) {
 			System.out.println(e);
@@ -26,9 +26,9 @@ public class SimplePostProcessing implements PostProcessing {
 			return null;
 		}
 
-		classifier = remove((FuzzyClassifier)classifier);
-		classifier = removeSameAntecedent((FuzzyClassifier)classifier);
-		classifier = radixSort((FuzzyClassifier)classifier);
+		classifier = remove((RuleBasedClassifier)classifier);
+		classifier = removeSameAntecedent((RuleBasedClassifier)classifier);
+		classifier = radixSort((RuleBasedClassifier)classifier);
 
 		return classifier;
 	}
@@ -38,10 +38,10 @@ public class SimplePostProcessing implements PostProcessing {
 	 * @param classifier
 	 * @return
 	 */
-	public FuzzyClassifier remove(FuzzyClassifier classifier) {
+	public RuleBasedClassifier remove(RuleBasedClassifier classifier) {
 		int originalRuleNum = classifier.getRuleNum();
 		for(int i = originalRuleNum-1; i >= 0; i--) {
-			FuzzyRule rule = classifier.getFuzzyRule(i);
+			Rule rule = classifier.getRule(i);
 			if( rule.getConsequent().getRuleWeight().getRuleWeight() <= 0 ||
 				rule.getAntecedent().getRuleLength() == 0) {
 				classifier.popRule(i);
@@ -55,14 +55,14 @@ public class SimplePostProcessing implements PostProcessing {
 	 * @param classifier
 	 * @return
 	 */
-	public FuzzyClassifier removeSameAntecedent(FuzzyClassifier classifier) {
+	public RuleBasedClassifier removeSameAntecedent(RuleBasedClassifier classifier) {
 		ArrayList<Integer> sameList = new ArrayList<>();
 		// Trace
 		for(int i = 0; i < classifier.getRuleNum(); i++) {
 			for(int j = 0; j < i; j++) {
 				if(!sameList.contains(j)) {
-					Antecedent origin = classifier.getFuzzyRule(i).getAntecedent();
-					Antecedent object = classifier.getFuzzyRule(j).getAntecedent();
+					Antecedent origin = classifier.getRule(i).getAntecedent();
+					Antecedent object = classifier.getRule(j).getAntecedent();
 					if(origin.toString().equals( object.toString() )) {
 						sameList.add(i);
 					}
@@ -81,10 +81,10 @@ public class SimplePostProcessing implements PostProcessing {
 	 * @param classifier
 	 * @return
 	 */
-	public FuzzyClassifier radixSort(FuzzyClassifier classifier) {
-		Collections.sort(classifier.getRuleSet(), new Comparator<FuzzyRule>() {
+	public RuleBasedClassifier radixSort(RuleBasedClassifier classifier) {
+		Collections.sort(classifier.getRuleSet(), new Comparator<Rule>() {
 			@Override
-			public int compare(FuzzyRule aa, FuzzyRule bb) {
+			public int compare(Rule aa, Rule bb) {
 				Antecedent a = aa.getAntecedent();
 				Antecedent b = bb.getAntecedent();
 				int dimension = a.getDimension();

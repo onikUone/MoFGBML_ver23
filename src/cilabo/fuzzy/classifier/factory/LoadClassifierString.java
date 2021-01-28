@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 import cilabo.data.ClassLabel;
 import cilabo.fuzzy.classifier.ClassifierFactory;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.classifier.operator.classification.Classification;
 import cilabo.fuzzy.knowledge.Knowledge;
-import cilabo.fuzzy.rule.FuzzyRule;
+import cilabo.fuzzy.rule.Rule;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.fuzzy.rule.consequent.Consequent;
 import cilabo.fuzzy.rule.consequent.RuleWeight;
@@ -83,8 +83,8 @@ public class LoadClassifierString implements ClassifierFactory {
 	}
 
 	@Override
-	public FuzzyClassifier create() {
-		FuzzyClassifier classifier = new FuzzyClassifier();
+	public RuleBasedClassifier create() {
+		RuleBasedClassifier classifier = new RuleBasedClassifier();
 
 		String[] array = split(classifierString);
 		ArrayList<String> lines = new ArrayList<>();
@@ -116,12 +116,12 @@ public class LoadClassifierString implements ClassifierFactory {
 					.consequentClass(classLabel)
 					.ruleWeight(ruleWeight)
 					.build();
-			FuzzyRule fuzzyRule = FuzzyRule.builder()
+			Rule fuzzyRule = Rule.builder()
 					.antecedent(antecedent)
 					.consequent(consequent)
 					.build();
 
-			classifier.addFuzzyRule(fuzzyRule);
+			classifier.addRule(fuzzyRule);
 		}
 		return classifier;
 	}

@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 import cilabo.data.InputVector;
 import cilabo.fuzzy.classifier.operator.classification.Classification;
-import cilabo.fuzzy.rule.FuzzyRule;
+import cilabo.fuzzy.rule.Rule;
 
-public class FuzzyClassifier implements Classifier {
+public class RuleBasedClassifier implements Classifier {
 	// ************************************************************
 	// Fields
 
 	/**  */
-	ArrayList<FuzzyRule> ruleSet = new ArrayList<>();
+	ArrayList<Rule> ruleSet = new ArrayList<>();
 
 	/**  */
 	Classification classification;
 
 	// ************************************************************
 	// Constructor
-	public FuzzyClassifier() {}
+	public RuleBasedClassifier() {}
 
 	// ************************************************************
 	// Methods
@@ -27,8 +27,8 @@ public class FuzzyClassifier implements Classifier {
 	 *
 	 */
 	@Override
-	public FuzzyRule classify(InputVector vector) {
-		return (FuzzyRule)this.classification.classify(this, vector);
+	public Rule classify(InputVector vector) {
+		return (Rule)this.classification.classify(this, vector);
 	}
 
 	/**
@@ -52,22 +52,22 @@ public class FuzzyClassifier implements Classifier {
 	/**
 	 *
 	 */
-	public void addFuzzyRule(FuzzyRule rule) {
+	public void addRule(Rule rule) {
 		this.ruleSet.add(rule);
 	}
 
-	public FuzzyRule getFuzzyRule(int index) {
+	public Rule getRule(int index) {
 		return this.ruleSet.get(index);
 	}
 
-	public ArrayList<FuzzyRule> getRuleSet() {
+	public ArrayList<Rule> getRuleSet() {
 		return this.ruleSet;
 	}
 
 	/**
 	 *
 	 */
-	public FuzzyRule popRule(int index) {
+	public Rule popRule(int index) {
 		return this.ruleSet.remove(index);
 	}
 

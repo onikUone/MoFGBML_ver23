@@ -1,9 +1,9 @@
 package cilabo.fuzzy.classifier;
 
 import cilabo.data.InputVector;
-import cilabo.fuzzy.rule.Rule;
+import cilabo.fuzzy.rule.InterfaceRule;
 
 public interface Classifier {
 
-	public Rule classify(InputVector vector);
+	public InterfaceRule classify(InputVector vector);
 }

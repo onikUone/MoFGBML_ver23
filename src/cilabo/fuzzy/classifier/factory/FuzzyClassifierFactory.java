@@ -2,11 +2,11 @@ package cilabo.fuzzy.classifier.factory;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.classifier.ClassifierFactory;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.classifier.operator.classification.Classification;
 import cilabo.fuzzy.classifier.operator.postProcessing.PostProcessing;
 import cilabo.fuzzy.classifier.operator.preProcessing.PreProcessing;
-import cilabo.fuzzy.rule.FuzzyRule;
+import cilabo.fuzzy.rule.Rule;
 import cilabo.fuzzy.rule.antecedent.Antecedent;
 import cilabo.fuzzy.rule.antecedent.AntecedentFactory;
 import cilabo.fuzzy.rule.consequent.Consequent;
@@ -76,8 +76,8 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 	 *
 	 */
 	@Override
-	public FuzzyClassifier create() {
-		FuzzyClassifier classifier = new FuzzyClassifier();
+	public RuleBasedClassifier create() {
+		RuleBasedClassifier classifier = new RuleBasedClassifier();
 		classifier.setClassification(classification);
 
 		// Pre Processing
@@ -88,12 +88,12 @@ public class FuzzyClassifierFactory implements ClassifierFactory {
 			Antecedent antecedent = antecedentFactory.create();
 			Consequent consequent = consequentFactory.learning(antecedent);
 
-			FuzzyRule rule = FuzzyRule.builder()
+			Rule rule = Rule.builder()
 								.antecedent(antecedent)
 								.consequent(consequent)
 								.build();
 
-			classifier.addFuzzyRule(rule);
+			classifier.addRule(rule);
 		}
 
 		// Post Processing

@@ -3,7 +3,7 @@ package cilabo.metric.multilabel;
 import cilabo.data.ClassLabel;
 import cilabo.data.DataSet;
 import cilabo.data.InputVector;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.metric.Metric;
 
 public class SubsetAccuracy implements Metric {
@@ -23,11 +23,11 @@ public class SubsetAccuracy implements Metric {
 	 */
 	@Override
 	public Double metric(Object... objects) {
-		FuzzyClassifier classifier = null;
+		RuleBasedClassifier classifier = null;
 		DataSet dataset = null;
 		for(Object object : objects) {
-			if(object.getClass() == FuzzyClassifier.class) {
-				classifier = (FuzzyClassifier)object;
+			if(object.getClass() == RuleBasedClassifier.class) {
+				classifier = (RuleBasedClassifier)object;
 			}
 			else if(object.getClass() == DataSet.class) {
 				dataset = (DataSet)object;
@@ -46,7 +46,7 @@ public class SubsetAccuracy implements Metric {
 		}
 	}
 
-	public Double metric(FuzzyClassifier classifier, DataSet dataset) {
+	public Double metric(RuleBasedClassifier classifier, DataSet dataset) {
 		double size = dataset.getDataSize();
 		double correct = 0;
 		for(int p = 0; p < size; p++) {

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.StaticFuzzyClassifierForTest;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.metric.Metric;
 import cilabo.utility.Input;
 
@@ -20,7 +20,7 @@ public class FmeasureTest {
 		DataSet train = new DataSet();
 		Input.inputMultiLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeMultiLabelClassifier(train);
+		RuleBasedClassifier classifier = StaticFuzzyClassifierForTest.makeMultiLabelClassifier(train);
 
 		// Fmeasure
 		Metric metric = new Fmeasure();

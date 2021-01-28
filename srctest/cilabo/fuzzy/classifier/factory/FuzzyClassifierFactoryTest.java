@@ -9,11 +9,11 @@ import org.junit.Test;
 import cilabo.data.DataSet;
 import cilabo.data.Pattern;
 import cilabo.fuzzy.StaticFuzzyClassifierForTest;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.knowledge.factory.HomoTriangleKnowledgeFactory;
 import cilabo.fuzzy.knowledge.membershipParams.HomoTriangle_3;
-import cilabo.fuzzy.rule.FuzzyRule;
+import cilabo.fuzzy.rule.Rule;
 import cilabo.utility.Input;
 
 public class FuzzyClassifierFactoryTest {
@@ -42,11 +42,11 @@ public class FuzzyClassifierFactoryTest {
 
 
 
-	public double evaluateCorrectRate(DataSet dataset, FuzzyClassifier classifier) {
+	public double evaluateCorrectRate(DataSet dataset, RuleBasedClassifier classifier) {
 		double correct = 0;
 		for(int i = 0; i < dataset.getDataSize(); i++) {
 			Pattern pattern = dataset.getPattern(i);
-			FuzzyRule winnerRule = classifier.classify(pattern.getInputVector());
+			Rule winnerRule = classifier.classify(pattern.getInputVector());
 			if(winnerRule == null) continue;
 			if(pattern.getTrueClass().toString().equals(winnerRule.getConsequent().getClassLabel().toString())) {
 				correct += 1;
@@ -63,7 +63,7 @@ public class FuzzyClassifierFactoryTest {
 		DataSet train = new DataSet();
 		Input.inputSingleLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
+		RuleBasedClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
 		// RuleNum
 		assertEquals(classifier.getRuleNum(), 13);
@@ -83,7 +83,7 @@ public class FuzzyClassifierFactoryTest {
 		DataSet train = new DataSet();
 		Input.inputSingleLabelDataSet(train, dataName);
 
-		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
+		RuleBasedClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
 		// RuleNum
 		assertEquals(classifier.getRuleNum(), 12);

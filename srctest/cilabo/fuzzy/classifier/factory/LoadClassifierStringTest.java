@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.StaticFuzzyClassifierForTest;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.knowledge.Knowledge;
 
 public class LoadClassifierStringTest {
@@ -14,9 +14,9 @@ public class LoadClassifierStringTest {
 	public void testLoadCreate() {
 		DataSet train = FuzzyClassifierFactoryTest.makeTestTrain();
 		Knowledge knowledge = FuzzyClassifierFactoryTest.makeTestKnowledge();
-		FuzzyClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
+		RuleBasedClassifier classifier = StaticFuzzyClassifierForTest.makeSingleLabelClassifier(train);
 
-		FuzzyClassifier newClassifier = LoadClassifierString.builder()
+		RuleBasedClassifier newClassifier = LoadClassifierString.builder()
 											.classifierString(classifier.toString())
 											.knowledge(knowledge)
 											.build()

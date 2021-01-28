@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.classifier.ClassifierFactory;
-import cilabo.fuzzy.classifier.FuzzyClassifier;
+import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.classifier.factory.FuzzyClassifierFactory;
 import cilabo.fuzzy.classifier.factory.LoadClassifierString;
 import cilabo.fuzzy.classifier.operator.classification.Classification;
@@ -47,7 +47,7 @@ public class Test {
 
 	public static void checkClassifierToString() {
 		Knowledge knowledge = makeTestKnowledge();
-		FuzzyClassifier classifier = makeTestClassifier();
+		RuleBasedClassifier classifier = makeTestClassifier();
 
 		String classifierString = classifier.toString();
 		classifierString = GeneralFunctions.uniformLineSeparator(classifierString);
@@ -68,7 +68,7 @@ public class Test {
 									.classifierString(classifierString)
 									.knowledge(knowledge)
 									.build();
-		FuzzyClassifier newClassifier = (FuzzyClassifier)factory.create();
+		RuleBasedClassifier newClassifier = (RuleBasedClassifier)factory.create();
 
 
 	}
@@ -111,7 +111,7 @@ public class Test {
 		return knowledge;
 	}
 
-	private static FuzzyClassifier makeTestClassifier() {
+	private static RuleBasedClassifier makeTestClassifier() {
 		String sep = File.separator;
 		String dataName = "dataset" + sep + "cilabo" + sep + "kadai5_pattern1.txt";
 		DataSet train = new DataSet();
@@ -150,7 +150,7 @@ public class Test {
 										.ruleNum(ruleNum)
 										.build();
 
-		FuzzyClassifier classifier = (FuzzyClassifier)factory.create();
+		RuleBasedClassifier classifier = (RuleBasedClassifier)factory.create();
 		return classifier;
 	}
 }
