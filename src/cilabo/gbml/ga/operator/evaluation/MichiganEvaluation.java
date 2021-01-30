@@ -4,19 +4,19 @@ import java.util.List;
 
 import org.uma.jmetal.component.evaluation.impl.AbstractEvaluation;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.integersolution.IntegerSolution;
+import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.JMetalException;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 
 import cilabo.gbml.problem.impl.ProblemMichiganFGBML;
 
-public class MichiganEvaluation<S extends IntegerSolution> extends AbstractEvaluation<S> {
+public class MichiganEvaluation<S extends Solution<?>> extends AbstractEvaluation<S> {
 	public MichiganEvaluation() {
 		super(new MichiganEvaluator<>());
 	}
 }
 
-class MichiganEvaluator<S extends IntegerSolution> implements SolutionListEvaluator<S> {
+class MichiganEvaluator<S extends Solution<?>> implements SolutionListEvaluator<S> {
 
 	@SuppressWarnings("unchecked")
 	@Override

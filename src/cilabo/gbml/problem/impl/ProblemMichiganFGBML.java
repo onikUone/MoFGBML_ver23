@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 
 import cilabo.data.DataSet;
@@ -25,7 +26,7 @@ import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.gbml.ga.solution.MichiganSolution;
 import cilabo.gbml.problem.AbstractMichiganGBML_Problem;
 
-public class ProblemMichiganFGBML<S extends IntegerSolution> extends AbstractMichiganGBML_Problem<S> {
+public class ProblemMichiganFGBML<S extends Solution<?>> extends AbstractMichiganGBML_Problem<S> {
 	// ************************************************************
 	// Fields
 	private Knowledge knowledge;

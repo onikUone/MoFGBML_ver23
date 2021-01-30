@@ -18,7 +18,7 @@ import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.integersolution.IntegerSolution;
+import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.SolutionListUtils;
 import org.uma.jmetal.util.comparator.ObjectiveComparator;
 import org.uma.jmetal.util.comparator.ObjectiveComparator.Ordering;
@@ -31,7 +31,7 @@ import cilabo.gbml.ga.operator.evaluation.MichiganEvaluation;
 import cilabo.gbml.ga.operator.replacement.SingleObjectiveMaximizeRepelacement;
 import cilabo.gbml.problem.AbstractMichiganGBML_Problem;
 
-public class MichiganFGBML<S extends IntegerSolution> extends AbstractEvolutionaryAlgorithm<S, List<S>>
+public class MichiganFGBML<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S, List<S>>
 							implements ObservableEntity
 {
 	private int evaluations;
