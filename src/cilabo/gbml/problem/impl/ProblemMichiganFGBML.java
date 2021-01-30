@@ -1,4 +1,4 @@
-package cilabo.gbml.example.michigan;
+package cilabo.gbml.problem.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,20 +25,23 @@ import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.gbml.ga.solution.MichiganSolution;
 import cilabo.gbml.problem.AbstractMichiganGBML_Problem;
 
-public class ExampleMichiganFGBML_problem extends AbstractMichiganGBML_Problem {
+public class ProblemMichiganFGBML<S extends IntegerSolution> extends AbstractMichiganGBML_Problem<S> {
 	// ************************************************************
 	// Fields
+	private Knowledge knowledge;
+	private DataSet evaluationDataset;
 
 	// ************************************************************
 	// Constructor
-	public ExampleMichiganFGBML_problem(int seed, DataSet train) {
+	public ProblemMichiganFGBML(int seed, DataSet train) {
+		this.evaluationDataset = train;
 		setNumberOfVariables(train.getNdim());
 		setNumberOfObjectives(1);
 		setNumberOfConstraints(0);
-		setName("MichiganFGBML_example");
+		setName("MichiganFGBML");
 
 		// Initialization
-		Knowledge knowledge = HomoTriangleKnowledgeFactory.builder()
+		this.knowledge = HomoTriangleKnowledgeFactory.builder()
 				.dimension(train.getNdim())
 				.params(HomoTriangle_2_3.getParams())
 				.build()
@@ -67,8 +70,25 @@ public class ExampleMichiganFGBML_problem extends AbstractMichiganGBML_Problem {
 	// ************************************************************
 	// Methods
 
-	public double michiganEvaluate(DataSet data, List<MichiganSolution> population) {
-		Map<String, MichiganSolution> map = new HashMap<>();
+	/* Getter */
+	public Knowledge getKnowledge() {
+		return this.knowledge;
+	}
+
+	/* Setter */
+	public void setEvaluationDataset(DataSet evaluationDataset) {
+		this.evaluationDataset = evaluationDataset;
+	}
+
+	public List<S> michiganEvaluate(List<S> population) {
+		if( population.size() == 0 ||
+			population.get(0).getClass() != MichiganSolution.class)
+			return null;
+
+		// Clear fitness
+		population.stream().forEach(s -> s.setObjective(0, 0.0));
+
+		Map<String, S> map = new HashMap<>();
 
 		// Make classifier
 		RuleBasedClassifier classifier = new RuleBasedClassifier();
@@ -77,7 +97,7 @@ public class ExampleMichiganFGBML_problem extends AbstractMichiganGBML_Problem {
 		classifier.setClassification(classification);
 
 		for(int i = 0; i < population.size(); i++) {
-			Rule rule = population.get(i).getRule();
+			Rule rule = ((MichiganSolution)population.get(i)).getRule();
 			classifier.addRule(rule);
 
 			if(!map.containsKey(rule.toString())) {
@@ -86,23 +106,20 @@ public class ExampleMichiganFGBML_problem extends AbstractMichiganGBML_Problem {
 		}
 
 		// Evaluation
-		double correctRate = 0;
-		for(int i = 0; i < data.getDataSize(); i++) {
-			Pattern pattern = data.getPattern(i);
+		for(int i = 0; i < evaluationDataset.getDataSize(); i++) {
+			Pattern pattern = evaluationDataset.getPattern(i);
 			Rule winnerRule = classifier.classify(pattern.getInputVector());
 			/* If a winner rule correctly classify a pattern,
 			 * then the winner rule's fitness will be incremented. */
 			if( winnerRule != null &&
 				pattern.getTrueClass().toString()
 					.equals(winnerRule.getConsequent().getClassLabel().toString())) {
-				MichiganSolution winnerMichigan = map.get(winnerRule.toString());
-				this.evaluate(winnerMichigan);
-				correctRate += 1;
+				S winnerMichigan = map.get(winnerRule.toString());
+				this.evaluate((IntegerSolution)winnerMichigan);
 			}
 		}
-		correctRate /= (double)data.getDataSize();
-		
-		return correctRate;
+
+		return population;
 	}
 
 	@Override

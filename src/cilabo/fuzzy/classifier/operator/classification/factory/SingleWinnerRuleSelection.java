@@ -6,6 +6,7 @@ import cilabo.data.InputVector;
 import cilabo.fuzzy.classifier.Classifier;
 import cilabo.fuzzy.classifier.RuleBasedClassifier;
 import cilabo.fuzzy.classifier.operator.classification.Classification;
+import cilabo.fuzzy.rule.RejectedRule;
 import cilabo.fuzzy.rule.Rule;
 
 public class SingleWinnerRuleSelection implements Classification {
@@ -51,7 +52,7 @@ public class SingleWinnerRuleSelection implements Classification {
 			return ruleSet.get(winner);
 		}
 		else {
-			return null;
+			return RejectedRule.getInstance();
 		}
 	}
 

@@ -39,7 +39,7 @@ public class Antecedent {
 				antecedentFuzzySets[i] = null;
 			}
 			else {
-				// Categorical
+				// Numerical
 				antecedentFuzzySets[i] = knowledge.getFuzzySet(i, antecedentIndex[i]);
 			}
 		}

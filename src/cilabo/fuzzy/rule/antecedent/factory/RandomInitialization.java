@@ -60,7 +60,7 @@ public class RandomInitialization implements AntecedentFactory {
 				}
 				else {
 					// Numerical
-					antecedentIndex[n] = 1 + uniqueRnd.nextInt(knowledge.getFuzzySetNum(n));
+					antecedentIndex[n] = uniqueRnd.nextInt(knowledge.getFuzzySetNum(n));
 				}
 			}
 		}
