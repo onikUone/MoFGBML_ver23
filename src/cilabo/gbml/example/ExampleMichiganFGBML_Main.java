@@ -1,4 +1,4 @@
-package cilabo.gbml.example.michigan;
+package cilabo.gbml.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.gbml.algorithm.MichiganFGBML;
 import cilabo.gbml.ga.operator.crossover.UniformCrossover;
 import cilabo.gbml.ga.operator.mutation.RuleMutation;
-import cilabo.gbml.ga.operator.variation.CrossoverAndMutationAndLearningVariation;
+import cilabo.gbml.ga.operator.variation.MichiganSolutionVariation;
 import cilabo.gbml.ga.solution.MichiganSolution;
 import cilabo.gbml.problem.impl.ProblemMichiganFGBML;
 import cilabo.metric.ErrorRate;
@@ -75,7 +75,7 @@ public class ExampleMichiganFGBML_Main {
 		int evaluations = populationSize + generation*offspringPopulationSize;
 		Termination termination = new TerminationByEvaluations(evaluations);
 		// Variation
-		Variation<IntegerSolution> variation = new CrossoverAndMutationAndLearningVariation<>(
+		Variation<IntegerSolution> variation = new MichiganSolutionVariation<>(
 													offspringPopulationSize, crossover, mutation,
 													problem.getKnowledge(),
 													problem.getConsequentFactory());

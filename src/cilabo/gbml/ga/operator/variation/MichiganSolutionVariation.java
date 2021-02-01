@@ -13,7 +13,7 @@ import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.rule.consequent.ConsequentFactory;
 import cilabo.gbml.ga.solution.MichiganSolution;
 
-public class CrossoverAndMutationAndLearningVariation<S extends Solution<?>> implements Variation<S> {
+public class MichiganSolutionVariation<S extends Solution<?>> implements Variation<S> {
 	private CrossoverOperator<S> crossover;
 	private MutationOperator<S> mutation;
 	private int matingPoolSize;
@@ -21,7 +21,7 @@ public class CrossoverAndMutationAndLearningVariation<S extends Solution<?>> imp
 	private Knowledge knowledge;
 	private ConsequentFactory consequentFactory;
 
-	public CrossoverAndMutationAndLearningVariation(
+	public MichiganSolutionVariation(
 			int offspringPopulationSize,
 			CrossoverOperator<S> crossover,
 			MutationOperator<S> mutation,
