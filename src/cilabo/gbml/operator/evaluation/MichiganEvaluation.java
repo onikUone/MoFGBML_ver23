@@ -1,4 +1,4 @@
-package cilabo.gbml.ga.operator.evaluation;
+package cilabo.gbml.operator.evaluation;
 
 import java.util.List;
 

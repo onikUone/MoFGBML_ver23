@@ -1,4 +1,4 @@
-package cilabo.gbml.ga.operator.crossover;
+package cilabo.gbml.operator.crossover;
 
 import java.util.ArrayList;
 import java.util.List;

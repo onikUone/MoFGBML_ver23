@@ -1,4 +1,4 @@
-package cilabo.gbml.ga.solution;
+package cilabo.gbml.solution;
 
 import java.util.List;
 

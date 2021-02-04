@@ -8,6 +8,7 @@ import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 
 import cilabo.data.DataSet;
+import cilabo.gbml.operator.crossover.UniformCrossover;
 import cilabo.gbml.problem.impl.ProblemMichiganFGBML;
 import cilabo.utility.Input;
 

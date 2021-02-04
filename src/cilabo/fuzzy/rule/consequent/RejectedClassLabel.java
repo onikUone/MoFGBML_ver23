@@ -14,7 +14,7 @@ public class RejectedClassLabel extends ClassLabel {
 
 	@Override
 	public String toString() {
-		return "Cannot be classified";
+		return "rejected";
 	}
 
 }

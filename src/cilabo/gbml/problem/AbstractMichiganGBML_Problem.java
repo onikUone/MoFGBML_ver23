@@ -11,7 +11,7 @@ import cilabo.fuzzy.classifier.operator.classification.factory.SingleWinnerRuleS
 import cilabo.fuzzy.rule.Rule;
 import cilabo.fuzzy.rule.antecedent.AntecedentFactory;
 import cilabo.fuzzy.rule.consequent.ConsequentFactory;
-import cilabo.gbml.ga.solution.MichiganSolution;
+import cilabo.gbml.solution.MichiganSolution;
 
 public abstract class AbstractMichiganGBML_Problem<S extends Solution<?>> extends AbstractIntegerProblem {
 	// ************************************************************

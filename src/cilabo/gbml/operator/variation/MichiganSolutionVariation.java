@@ -1,4 +1,4 @@
-package cilabo.gbml.ga.operator.variation;
+package cilabo.gbml.operator.variation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.uma.jmetal.util.JMetalException;
 
 import cilabo.fuzzy.knowledge.Knowledge;
 import cilabo.fuzzy.rule.consequent.ConsequentFactory;
-import cilabo.gbml.ga.solution.MichiganSolution;
+import cilabo.gbml.solution.MichiganSolution;
 
 public class MichiganSolutionVariation<S extends Solution<?>> implements Variation<S> {
 	private CrossoverOperator<S> crossover;

@@ -23,8 +23,8 @@ import cilabo.fuzzy.rule.antecedent.factory.RandomInitialization;
 import cilabo.fuzzy.rule.consequent.Consequent;
 import cilabo.fuzzy.rule.consequent.ConsequentFactory;
 import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
-import cilabo.gbml.ga.solution.MichiganSolution;
 import cilabo.gbml.problem.AbstractMichiganGBML_Problem;
+import cilabo.gbml.solution.MichiganSolution;
 
 public class ProblemMichiganFGBML<S extends Solution<?>> extends AbstractMichiganGBML_Problem<S> {
 	// ************************************************************

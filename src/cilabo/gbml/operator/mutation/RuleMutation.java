@@ -1,4 +1,4 @@
-package cilabo.gbml.ga.operator.mutation;
+package cilabo.gbml.operator.mutation;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;

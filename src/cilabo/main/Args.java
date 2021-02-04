@@ -10,13 +10,13 @@ import java.lang.reflect.InvocationTargetException;
  *
  */
 public abstract class Args {
-	private static String className = null;
+	private static Args instance = null;
+
+	protected abstract void load(String[] args);
 
 	public static void loadArgs(String argsName, String[] args) {
-		className = argsName;
-		Args a = null;
 		try {
-			a = (Args)Class.forName(argsName).getConstructor().newInstance();
+			instance = (Args)Class.forName(argsName).getConstructor().newInstance();
 		} catch (InstantiationException |
 				 IllegalAccessException |
 				 IllegalArgumentException |
@@ -26,37 +26,22 @@ public abstract class Args {
 				 ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		a.load(args);
+		instance.load(args);
 	}
 
-	public abstract void load(String[] args);
-
 	public static String getParamsString() {
-		if(className == null) {
+		if(instance == null) {
 			return null;
-		}
-
-		Args args = null;
-		try {
-			args = (Args)Class.forName(className).getConstructor().newInstance();
-		} catch (InstantiationException |
-				 IllegalAccessException |
-				 IllegalArgumentException |
-				 InvocationTargetException |
-				 NoSuchMethodException |
-				 SecurityException |
-				 ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 
 		StringBuilder sb = new StringBuilder();
 		String ln = System.lineSeparator();
-		sb.append("Class: " + args.getClass().getCanonicalName() + ln);
+		sb.append("Class: " + instance.getClass().getCanonicalName() + ln);
 		sb.append("Parameters: " + ln);
-		for(Field field : args.getClass().getDeclaredFields()) {
+		for(Field field : instance.getClass().getDeclaredFields()) {
 			try {
 				field.setAccessible(true);
-				sb.append( field.getName() + " = " + field.get(args) + ln );
+				sb.append( field.getName() + " = " + field.get(instance) + ln );
 			}
 			catch(IllegalAccessException e) {
 				sb.append(field.getName() + " = " + "access denied" + ln);

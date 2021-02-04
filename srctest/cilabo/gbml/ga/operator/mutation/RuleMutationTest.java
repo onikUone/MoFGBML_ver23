@@ -7,6 +7,7 @@ import org.uma.jmetal.solution.integersolution.IntegerSolution;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.knowledge.Knowledge;
+import cilabo.gbml.operator.mutation.RuleMutation;
 import cilabo.gbml.problem.impl.ProblemMichiganFGBML;
 import cilabo.utility.Input;
 
