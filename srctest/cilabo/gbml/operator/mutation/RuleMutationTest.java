@@ -1,19 +1,20 @@
-package cilabo.gbml.ga.operator.mutation;
+package cilabo.gbml.operator.mutation;
 
 import java.io.File;
 
+import org.junit.Test;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 
 import cilabo.data.DataSet;
 import cilabo.fuzzy.knowledge.Knowledge;
-import cilabo.gbml.operator.mutation.RuleMutation;
 import cilabo.gbml.problem.impl.ProblemMichiganFGBML;
 import cilabo.utility.Input;
 
 public class RuleMutationTest {
-	//don't using JUnit
-	public static void main(String[] args) {
+
+	@Test
+	public void testExecute() {
 		String sep = File.separator;
 		// Load "Pima" dataset
 		String dataName = "dataset" + sep + "pima" + sep + "a0_0_pima-10tra.dat";
@@ -22,8 +23,8 @@ public class RuleMutationTest {
 
 		// Problem
 		int seed = 0;
-		Problem<IntegerSolution> problem = new ProblemMichiganFGBML(seed, train);
-		Knowledge knowledge = ((ProblemMichiganFGBML)problem).getKnowledge();
+		Problem<IntegerSolution> problem = new ProblemMichiganFGBML<>(seed, train);
+		Knowledge knowledge = ((ProblemMichiganFGBML<?>)problem).getKnowledge();
 
 		// Solution
 		IntegerSolution solution = problem.createSolution();

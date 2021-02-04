@@ -5,7 +5,9 @@ import java.util.concurrent.ForkJoinPool;
 public class Parallel {
 	// ************************************************************
 	// Fields
-	public static ForkJoinPool learningForkJoinPool = new ForkJoinPool(1);
+	private static Parallel instance = new Parallel();
+
+	private ForkJoinPool learningForkJoinPool = new ForkJoinPool(1);
 
 	// ************************************************************
 	// Constructor
@@ -13,8 +15,19 @@ public class Parallel {
 	// ************************************************************
 	// Methods
 
-	public static void initLearningForkJoinPool(int core) {
-		Parallel.learningForkJoinPool = new ForkJoinPool(core);
+	public static Parallel getInstance() {
+		if(instance == null) {
+			instance = new Parallel();
+		}
+		return instance;
+	}
+
+	public void initLearningForkJoinPool(int core) {
+		instance.learningForkJoinPool = new ForkJoinPool(core);
+	}
+
+	public ForkJoinPool getLearningForkJoinPool() {
+		return instance.learningForkJoinPool;
 	}
 
 }

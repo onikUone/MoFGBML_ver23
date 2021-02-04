@@ -1,20 +1,23 @@
-package cilabo.gbml.ga.operator.crossover;
+package cilabo.gbml.operator.crossover;
+
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 
 import cilabo.data.DataSet;
-import cilabo.gbml.operator.crossover.UniformCrossover;
 import cilabo.gbml.problem.impl.ProblemMichiganFGBML;
 import cilabo.utility.Input;
 
 // don't using JUnit
 public class UniformCrossoverTest {
-	public static void main(String[] args) {
+	@Test
+	public void testExecute() {
 		String sep = File.separator;
 		// Load "Pima" dataset
 		String dataName = "dataset" + sep + "pima" + sep + "a0_0_pima-10tra.dat";
@@ -23,7 +26,7 @@ public class UniformCrossoverTest {
 
 		// Problem
 		int seed = 0;
-		Problem<IntegerSolution> problem = new ProblemMichiganFGBML(seed, train);
+		Problem<IntegerSolution> problem = new ProblemMichiganFGBML<>(seed, train);
 
 		// Parents
 		IntegerSolution parent1 = problem.createSolution();
@@ -46,6 +49,7 @@ public class UniformCrossoverTest {
 		System.out.print(p1);
 		System.out.print(p2);
 		System.out.println(offspring.get(0));
+		assertEquals(p1, offspring.get(0).toString());
 
 		// Case 2: do fully crossover
 		System.out.println("[Case 2: do fully crossover]");

@@ -36,6 +36,7 @@ import cilabo.gbml.solution.MichiganSolution;
 import cilabo.metric.ErrorRate;
 import cilabo.metric.Metric;
 import cilabo.utility.Input;
+import cilabo.utility.Parallel;
 
 /**
  * For student belonging in CILAB,
@@ -45,6 +46,7 @@ public class ExampleMichiganFGBML_Main {
 
 	public static void main(String[] args) throws JMetalException, FileNotFoundException {
 		String sep = File.separator;
+		Parallel.getInstance().initLearningForkJoinPool(1);;
 
 		// 3.2. 数値実験準備
 		deterministicTest();

@@ -58,7 +58,7 @@ public class MoFGBML_Learning implements ConsequentFactory {
 			final Integer CLASSNUM = c;
 			Optional<Double> partSum = null;
 			try {
-				partSum = Parallel.learningForkJoinPool.submit( () ->
+				partSum = Parallel.getInstance().getLearningForkJoinPool().submit( () ->
 					train.getPatterns().parallelStream()
 						// 正解クラスが「CLASS == c」のパターンを抽出
 						.filter(pattern -> pattern.getTrueClass().getClassLabel() == CLASSNUM)

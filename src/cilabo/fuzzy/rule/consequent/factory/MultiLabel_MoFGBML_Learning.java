@@ -54,7 +54,7 @@ public class MultiLabel_MoFGBML_Learning extends MoFGBML_Learning implements Con
 				final int ASSOCIATE = i;
 				Optional<Double> partSum = null;
 				try {
-					partSum = Parallel.learningForkJoinPool.submit( () ->
+					partSum = Parallel.getInstance().getLearningForkJoinPool().submit( () ->
 						train.getPatterns().parallelStream()
 						// 結論部クラスベクトルのCLASS番目の要素がASSOCIATEであるパターンを抽出
 						.filter(pattern -> pattern.getTrueClass().getClassVector()[CLASS] == ASSOCIATE)
