@@ -12,7 +12,7 @@ import cilabo.data.DataSet;
 import cilabo.data.Pattern;
 import cilabo.fuzzy.knowledge.Knowledge;
 
-public class RuleMutation implements MutationOperator<IntegerSolution> {
+public class MichiganMutation implements MutationOperator<IntegerSolution> {
 	private double mutationProbability;
 	private RandomGenerator<Double> randomGenerator;
 	private BoundedRandomGenerator<Integer> intRandomGenerator;
@@ -20,14 +20,14 @@ public class RuleMutation implements MutationOperator<IntegerSolution> {
 	private DataSet data;
 
 	  /** Constructor */
-	  public RuleMutation(double mutationProbability, Knowledge knowledge, DataSet data) {
+	  public MichiganMutation(double mutationProbability, Knowledge knowledge, DataSet data) {
 	    this(mutationProbability, knowledge, data,
 	    	 () -> JMetalRandom.getInstance().nextDouble(),
 	    	 (a, b) -> JMetalRandom.getInstance().nextInt(a, b));
 	  }
 
 	  /** Constructor */
-	  public RuleMutation(double mutationProbability, Knowledge knowledge, DataSet data, RandomGenerator<Double> randomGenerator) {
+	  public MichiganMutation(double mutationProbability, Knowledge knowledge, DataSet data, RandomGenerator<Double> randomGenerator) {
 		  this(
 			mutationProbability, knowledge, data,
 			randomGenerator,
@@ -35,7 +35,7 @@ public class RuleMutation implements MutationOperator<IntegerSolution> {
 	  }
 
 	  /** Constructor */
-	  public RuleMutation(double mutationProbability, Knowledge knowledge, DataSet data, RandomGenerator<Double> randomGenerator, BoundedRandomGenerator<Integer> intRandomGenerator) {
+	  public MichiganMutation(double mutationProbability, Knowledge knowledge, DataSet data, RandomGenerator<Double> randomGenerator, BoundedRandomGenerator<Integer> intRandomGenerator) {
 	    if (mutationProbability < 0) {
 	      throw new JMetalException("Mutation probability is negative: " + mutationProbability);
 	    }

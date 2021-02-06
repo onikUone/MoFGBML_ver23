@@ -34,7 +34,7 @@ public class RuleMutationTest {
 		// Operator
 		double mutationProbability = 1.0 / (double)train.getDataSize();
 		mutationProbability = 1.0;
-		RuleMutation mutation = new RuleMutation(mutationProbability, knowledge, train);
+		MichiganMutation mutation = new MichiganMutation(mutationProbability, knowledge, train);
 		mutation.execute(solution);
 		System.out.println("[new solution]");
 		System.out.println(solution.toString());

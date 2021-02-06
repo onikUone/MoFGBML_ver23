@@ -20,6 +20,15 @@ public class RuleBasedClassifier implements Classifier {
 	// Constructor
 	public RuleBasedClassifier() {}
 
+	/**  Copy constructor */
+	public RuleBasedClassifier(RuleBasedClassifier classifier) {
+		ruleSet = new ArrayList<>(classifier.getRuleNum());
+		for(int i = 0; i < ruleSet.size(); i++) {
+			ruleSet.add(i, classifier.getRule(i).deepcopy());
+		}
+		classification = classifier.getClassification();
+	}
+
 	// ************************************************************
 	// Methods
 
@@ -76,6 +85,14 @@ public class RuleBasedClassifier implements Classifier {
 	 */
 	public void setClassification(Classification classification) {
 		this.classification = classification;
+	}
+
+	public Classification getClassification() {
+		return this.classification;
+	}
+
+	public RuleBasedClassifier copy() {
+		return new RuleBasedClassifier(this);
 	}
 
 	/**

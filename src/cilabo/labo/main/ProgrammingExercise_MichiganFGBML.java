@@ -1,4 +1,4 @@
-package cilabo.gbml.example;
+package cilabo.labo.main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +29,7 @@ import cilabo.fuzzy.rule.consequent.ConsequentFactory;
 import cilabo.fuzzy.rule.consequent.factory.MoFGBML_Learning;
 import cilabo.gbml.algorithm.MichiganFGBML;
 import cilabo.gbml.operator.crossover.UniformCrossover;
-import cilabo.gbml.operator.mutation.RuleMutation;
+import cilabo.gbml.operator.mutation.MichiganMutation;
 import cilabo.gbml.operator.variation.MichiganSolutionVariation;
 import cilabo.gbml.problem.impl.ProblemMichiganFGBML;
 import cilabo.gbml.solution.MichiganSolution;
@@ -42,7 +42,7 @@ import cilabo.utility.Parallel;
  * For student belonging in CILAB,
  * this example is implementation of the programming exercise 6.
  */
-public class ExampleMichiganFGBML_Main {
+public class ProgrammingExercise_MichiganFGBML {
 
 	public static void main(String[] args) throws JMetalException, FileNotFoundException {
 		String sep = File.separator;
@@ -69,7 +69,7 @@ public class ExampleMichiganFGBML_Main {
 		CrossoverOperator<IntegerSolution> crossover = new UniformCrossover(crossoverProbability);
 		// Mutation
 		double mutationProbability = 1.0 / (double)train.getNdim();
-		MutationOperator<IntegerSolution> mutation = new RuleMutation(mutationProbability,
+		MutationOperator<IntegerSolution> mutation = new MichiganMutation(mutationProbability,
 																	  problem.getKnowledge(),
 																	  train);
 		// Termination
