@@ -27,8 +27,8 @@ import org.uma.jmetal.util.observable.ObservableEntity;
 import org.uma.jmetal.util.observable.impl.DefaultObservable;
 
 import cilabo.fuzzy.classifier.RuleBasedClassifier;
-import cilabo.gbml.operator.evaluation.MichiganEvaluation;
-import cilabo.gbml.operator.replacement.SingleObjectiveMaximizeRepelacement;
+import cilabo.gbml.component.evaluation.MichiganEvaluation;
+import cilabo.gbml.component.replacement.SingleObjectiveMaximizeRepelacement;
 import cilabo.gbml.problem.AbstractMichiganGBML_Problem;
 
 public class MichiganFGBML<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S, List<S>>

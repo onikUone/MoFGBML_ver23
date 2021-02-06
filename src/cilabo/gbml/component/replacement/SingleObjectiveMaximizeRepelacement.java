@@ -1,4 +1,4 @@
-package cilabo.gbml.operator.replacement;
+package cilabo.gbml.component.replacement;
 
 import java.util.ArrayList;
 import java.util.Collections;

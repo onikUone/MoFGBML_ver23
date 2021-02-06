@@ -1,4 +1,4 @@
-package cilabo.gbml.operator.variation;
+package cilabo.gbml.component.variation;
 
 import java.util.ArrayList;
 import java.util.List;
